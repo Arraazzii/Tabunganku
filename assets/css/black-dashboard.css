@@ -2442,8 +2442,8 @@ pre {
 }
 
 body {
-  background: #1e1e2d;
-  color: #222a42;
+  background: #ffffff;
+  color: #ffffff;
   font-size: 14px;
   font-family: "Poppins";
   -moz-osx-font-smoothing: grayscale;
@@ -2455,19 +2455,19 @@ body.dashboard-white .main-panel {
 }
 
 body.dashboard-white .footer ul li a {
-  color: #222a42;
+  color: #ffffff;
 }
 
 body.dashboard-white .footer .copyright {
-  color: #222a42;
+  color: #ffffff;
 }
 
 body.dashboard-white .navbar-minimize button i {
-  color: #222a42;
+  color: #ffffff;
 }
 
 body.dashboard-white .navbar .navbar-brand {
-  color: #222a42;
+  color: #ffffff;
 }
 
 .main {
