@@ -16,9 +16,9 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button> -->
-                <div class="photo">
+                <div class="photo d-lg-none d-xl-none">
                         <img src="<?php echo base_url('assets/img/anime3.png')?>" data-toggle="collapse" data-target="#navigation">
-          </div>
+                </div>
                         <div class="collapse navbar-collapse" id="navigation">
                                 <ul class="navbar-nav ml-auto ">
                                         <!-- <div class="search-bar input-group"> -->
