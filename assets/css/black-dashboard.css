@@ -6004,4 +6004,10 @@ table.tablesorter thead tr .headerSortDown {
   color: #1d253b;
 }
 
+.center {
+  display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
 /*# sourceMappingURL=dashboard-free.css.map */
