@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent   ">
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" data-color="blue">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle d-inline">

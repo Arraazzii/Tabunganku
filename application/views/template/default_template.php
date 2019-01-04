@@ -4,7 +4,7 @@
 <style type="text/css">
 <?php if(isset($css)){ echo $css; } ?> 
 </style>
-<body >
+<body class="white-content">
     <div class="wrapper">
         <?php echo $page["sidebar"]; ?>
         <div class="main-panel">
