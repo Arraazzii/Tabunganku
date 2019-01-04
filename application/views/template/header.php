@@ -9,7 +9,8 @@
                                         <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo" style="position: absolute;left: 33%;bottom: 20%">Dashboard</a>
+                        <a class="navbar-brand d-none d-lg-block d-xl-block" href="#pablo">Dashboard</a>
+                        <a class="navbar-brand center d-lg-none d-xl-none" href="#pablo">Dashboard</a>
                 </div>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>

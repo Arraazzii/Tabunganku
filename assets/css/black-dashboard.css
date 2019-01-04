@@ -6005,9 +6005,22 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .center {
-  display: block;
+    position: absolute;
+    text-align: center;
+    margin-right: auto;
     margin-left: auto;
-    margin-right: auto
+    display: inline-block;
 }
 
+/*.center {
+  position: absolute;
+  left:40%;
+  display:inline-block;
+}*/
+/*.center {
+   position: absolute;
+    margin-right: auto;
+    margin-left: auto;
+    left: 35%;
+}*/
 /*# sourceMappingURL=dashboard-free.css.map */
