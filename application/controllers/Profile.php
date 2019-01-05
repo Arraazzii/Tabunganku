@@ -36,24 +36,13 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('login') == true){
-			redirect('Home/profile');
-		}
-		
-		if (isset($_GET['code'])) {
-			
-			$this->googleplus->getAuthenticate();
-			$this->session->set_userdata('login',true);
-			$this->session->set_userdata('user_profile', $this->googleplus->getUserInfo());
-			redirect('Home/profile');
-			
-		} 
-			
-		$contents['login_url'] = $this->googleplus->loginURL();
-		$this->load->view('Login/index',$contents);
-	}
+		$path = "";
+		$data = array(
+			"page" => $this->load("Tabunganku", $path),
+			"content" =>$this->load->view('index', false, true)
+		);
+		$this->load->view('template/default_template', $data);
 
-	public function profile(){
 		if($this->session->userdata('login') != true){
 			redirect('');
 		}
@@ -62,13 +51,4 @@ class Home extends CI_Controller {
 		$this->load->view('index',$contents);
 		
 	}
-	
-	public function logout(){
-		
-		$this->session->sess_destroy();
-		$this->googleplus->revokeToken();
-		redirect('');
-		
-	}
-	
 }
