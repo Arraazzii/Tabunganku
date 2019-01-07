@@ -56,10 +56,25 @@ class Home extends CI_Controller {
 	public function profile(){
 		if($this->session->userdata('login') != true){
 			redirect('');
-		}
-		
+		}		
+
 		$contents['user_profile'] = $this->session->userdata('user_profile');
-		$this->load->view('index',$contents);
+
+		$newdata = array(
+			'profile' => $contents['user_profile'],
+		);
+		
+		$path = "";
+        $data = array(
+            "page" => $this->load("User - Dashboard", $path) ,
+            "content" => $this
+            ->load
+            ->view('index', $newdata, true)
+           );
+
+        $this
+        ->load
+        ->view('template/default_template', $data);
 		
 	}
 	

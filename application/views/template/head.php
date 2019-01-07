@@ -13,4 +13,10 @@
     <!-- Black Dashboard CSS -->
     <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/css/black-dashboard.css?v=1.0.0');?>" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
  </head>

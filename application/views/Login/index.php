@@ -1,80 +1,75 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Tabunganku</title>
-	<link rel="icon" href="<?php echo base_url('assets/img/3.png')?>">
-	
-	<style type="text/css">
+    <title>Tabunganku | <?php echo $title;?></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- Nucleo Icons -->
+  	<link href="<?php echo base_url('assets/css/nucleo-icons.css')?>" rel="stylesheet" />
+    <link rel="icon" href="<?php echo base_url('assets/img/3.png')?>">
+      <!--     Fonts and icons     -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- Black Dashboard CSS -->
+    <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet" />
+    <link href="<?php echo base_url('assets/css/black-dashboard.css?v=1.0.0');?>" rel="stylesheet" />
 
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+        .btn {
+        	width: 100%;
+        }
 
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
+        @media only screen and (max-width: 950px) {
+        	.card {
+	        	max-width: 95%;
+	        	margin-right: auto;
+	        	margin-left: auto;
+	        	margin-top: 15%;
+        	}
+        }
+    </style>
+ </head>
 <body>
-<a href="https://github.com/moemoe89/google-login-ci3"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-graphite@2x.png" alt="Fork me on GitHub"></a>
-<div id="container">
-	<h1>CodeIgniter Sign In With Google+</h1>
-
-	<div id="body">
-		<p><a href="<?php echo $login_url;?>">Login With Google</a></p>
-	</div>
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <a href="<?php echo $login_url;?>">
+      		<img src="<?php echo base_url('assets/img/g.png')?>">
+      	</a>
+      	<br><br>
+      	<center>
+      	<h4>or</h4>
+      	</center>
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <!-- <div class="form-check">
+          <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Option one is this
+              <span class="form-check-sign">
+                  <span class="check"></span>
+              </span>
+          </label>
+      </div> -->
+      <button type="submit" class="btn btn-info animation-on-hover">Log In</button>
+    </form>
+  </div>
 </div>
-
 </body>
 </html>
