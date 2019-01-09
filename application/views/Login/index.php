@@ -1,75 +1,93 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Tabunganku | <?php echo $title;?></title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!-- Nucleo Icons -->
-  	<link href="<?php echo base_url('assets/css/nucleo-icons.css')?>" rel="stylesheet" />
-    <link rel="icon" href="<?php echo base_url('assets/img/3.png')?>">
-      <!--     Fonts and icons     -->
-	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <!-- Black Dashboard CSS -->
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet" />
-    <link href="<?php echo base_url('assets/css/black-dashboard.css?v=1.0.0');?>" rel="stylesheet" />
-
-    <style type="text/css">
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-
-        .btn {
-        	width: 100%;
-        }
-
-        @media only screen and (max-width: 950px) {
-        	.card {
-	        	max-width: 95%;
-	        	margin-right: auto;
-	        	margin-left: auto;
-	        	margin-top: 15%;
-        	}
-        }
-    </style>
- </head>
+  <title>Login V12</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->  
+  <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/3.png')?>"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/vendor/bootstrap/css/bootstrap.min.css')?>">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css')?>">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')?>">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/vendor/animate/animate.css')?>">
+<!--===============================================================================================-->  
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/vendor/css-hamburgers/hamburgers.min.css')?>">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/vendor/select2/select2.min.css')?>">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/css/util.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/css/main.css')?>">
+<!--===============================================================================================-->
+</head>
 <body>
-<div class="card">
-  <div class="card-body">
-    <form>
-      <div class="form-group">
-        <a href="<?php echo $login_url;?>">
-      		<img src="<?php echo base_url('assets/img/g.png')?>">
-      	</a>
-      	<br><br>
-      	<center>
-      	<h4>or</h4>
-      	</center>
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  <div class="limiter" style="margin-top: -50px">
+    <div class="container-login100" style="background-image: url('<?php echo base_url('assets/login/images/img-01.jpg')?>');">
+      <div class="wrap-login100 p-t-150 p-b-30">
+        <form class="login100-form validate-form">
+          <div class="login100-form-avatar">
+            <img src="<?php echo base_url('assets/img/3.png')?>" alt="AVATAR">
+          </div>
+
+          <span class="login100-form-title p-t-20 p-b-45">
+            TABUNGANKU
+          </span>
+
+          <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+            <input class="input100" type="text" name="username" placeholder="Username">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+            <input class="input100" type="password" name="pass" placeholder="Password">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+
+          <div class="container-login100-form-btn p-t-10">
+            <button class="login100-form-btn">
+              Login
+            </button>
+          </div>
+
+          <div class="text-center w-full p-t-25 p-b-100">
+            Or&nbsp&nbsp
+            <a href="<?= $login_url; ?>" class="txt1">
+              <i class="fa fa-google"></i>&nbspLogin With Google
+            </a>
+          </div>
+
+          <div class="text-center w-full">
+            <a class="txt1" href="#">
+              Create new account
+              <i class="fa fa-long-arrow-right"></i>            
+            </a>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <!-- <div class="form-check">
-          <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
-              Option one is this
-              <span class="form-check-sign">
-                  <span class="check"></span>
-              </span>
-          </label>
-      </div> -->
-      <button type="submit" class="btn btn-info animation-on-hover">Log In</button>
-    </form>
+    </div>
   </div>
-</div>
+  
+  
+
+  
+<!--===============================================================================================-->  
+  <script src="<?php echo base_url('assets/login/vendor/jquery/jquery-3.2.1.min.js')?>"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url('assets/login/vendor/bootstrap/js/popper.js')?>"></script>
+  <script src="<?php echo base_url('assets/login/vendor/bootstrap/js/bootstrap.min.js')?>"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url('assets/login/vendor/select2/select2.min.js')?>"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url('assets/login/js/main.js')?>"></script>
+
 </body>
 </html>

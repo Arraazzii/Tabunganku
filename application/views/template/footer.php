@@ -1,10 +1,10 @@
-<footer class="footer">
+<footer class="footer d-none d-sm-block d-md-block d-lg-block d-xl-block">
       <div class="container-fluid">
         <nav class="float-left">
           <ul>
               <li>
                   <a href="#">
-                      Buncit Tim
+                      Creative Team
                   </a>
               </li>
           </ul>
@@ -14,11 +14,27 @@
             <script>
                 document.write(new Date().getFullYear())
             </script>, made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="https://www.creative-tim.com" target="_blank">Buncit Tim</a>
+            <a href="https://www.creative-tim.com" target="_blank">Creative Team</a>
         </div>
 
          <!-- your footer here -->
       </div>
+</footer>
+<footer class="footer d-sm-none d-md-none d-lg-none d-xl-none">
+        <div class="container-fluid">
+                
+                <div class="copyright float-center">
+                  <a href="#">
+                      Buncit Tim
+                  </a>
+                        &copy;
+                        <script>
+                        document.write(new Date().getFullYear())
+                        </script><br> made with <i class="tim-icons icon-heart-2"></i> by
+                        <a href="https://www.creative-tim.com" target="_blank">Buncit Tim</a>
+                </div>
+                <!-- your footer here -->
+        </div>
 </footer>
 <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
