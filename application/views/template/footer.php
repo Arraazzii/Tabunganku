@@ -4,7 +4,7 @@
           <ul>
               <li>
                   <a href="#">
-                      Creative Team
+                      Creative Tim
                   </a>
               </li>
           </ul>
@@ -14,7 +14,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script>, made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Team</a>
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
         </div>
 
          <!-- your footer here -->
@@ -25,13 +25,13 @@
                 
                 <div class="copyright float-center">
                   <a href="#">
-                      Buncit Tim
+                      Creative Tim
                   </a>
                         &copy;
                         <script>
                         document.write(new Date().getFullYear())
                         </script><br> made with <i class="tim-icons icon-heart-2"></i> by
-                        <a href="https://www.creative-tim.com" target="_blank">Buncit Tim</a>
+                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
                 </div>
                 <!-- your footer here -->
         </div>
