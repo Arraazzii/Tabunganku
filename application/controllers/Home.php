@@ -37,7 +37,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata('login') == true){
-			redirect('Home/profile');
+			redirect('Home');
 		}
 		
 		if (isset($_GET['code'])) {
@@ -45,7 +45,7 @@ class Home extends CI_Controller {
 			$this->googleplus->getAuthenticate();
 			$this->session->set_userdata('login',true);
 			$this->session->set_userdata('user_profile', $this->googleplus->getUserInfo());
-			redirect('Home/profile');
+			redirect('Home');
 			
 		} 
 			
@@ -69,7 +69,7 @@ class Home extends CI_Controller {
             "page" => $this->load("User - Dashboard", $path) ,
             "content" => $this
             ->load
-            ->view('index', $newdata, true)
+            ->view('profile', $newdata, true)
            );
 
         $this
