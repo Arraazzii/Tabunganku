@@ -23,7 +23,7 @@
                                                 </li>
                                                 <div class="dropdown-divider"></div>
                                                 <li class="nav-item">
-                                                        <a class="nav-link" href="<?php echo site_url('Home/logout');?>">Logout</a>
+                                                        <a class="nav-link" href="<?php echo site_url('Login/logout');?>">Logout</a>
                                                 </li>
                                         </ul>
                                         <li class="separator d-lg-none"></li>

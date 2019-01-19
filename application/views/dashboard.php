@@ -1,3 +1,3 @@
 <div class="content">
-	<div><div></div></div>
+	<hr>	
 </div>

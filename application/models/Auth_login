@@ -1,0 +1,33 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Auth_login extends CI_Model {
+    var $TABLE = "table_user";
+    var $COLUMN = array(
+        "id",
+        "email",
+        "nama_depan",
+        "nama_belakang",
+        "tanggal_daftar",
+        "kode_tabungan"
+    );
+
+    function __construct(){
+        parent::__construct();
+        $this->load->database();
+    }
+
+    public function readBy($username, $password){
+        try {
+            $this->db->select('*');
+            $this->db->from($this->TABLE);
+            $this->db->where($this->COLUMN[1], $username);
+            $query = $this->db->get();
+            return $query->row();
+        }
+        catch (Exception $e){
+            return null;
+        }
+    }
+    
+}

@@ -37,7 +37,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata('login') == true){
-			redirect('Home');
+			redirect('Home/dashboard');
 		}
 		
 		if (isset($_GET['code'])) {
@@ -45,17 +45,35 @@ class Home extends CI_Controller {
 			$this->googleplus->getAuthenticate();
 			$this->session->set_userdata('login',true);
 			$this->session->set_userdata('user_profile', $this->googleplus->getUserInfo());
-			redirect('Home');
-			
-		} 
-			
+			redirect('Home/dashboard');
+		} 	
 		$contents['login_url'] = $this->googleplus->loginURL();
 		$this->load->view('Login/index',$contents);
 	}
 
+	public function dashboard(){
+		if($this->session->userdata('login') != true){
+			redirect('Login');
+		}
+
+		$newdata = array();
+
+		$path = "";
+        $data = array(
+            "page" => $this->load("User - Dashboard", $path) ,
+            "content" => $this
+            ->load
+            ->view('dashboard', $newdata, true)
+           );
+
+        $this
+        ->load
+        ->view('template/default_template', $data);
+	}
+
 	public function profile(){
 		if($this->session->userdata('login') != true){
-			redirect('');
+			redirect('Login/index');
 		}		
 
 		$contents['user_profile'] = $this->session->userdata('user_profile');
@@ -66,7 +84,7 @@ class Home extends CI_Controller {
 		
 		$path = "";
         $data = array(
-            "page" => $this->load("User - Dashboard", $path) ,
+            "page" => $this->load("User - Profile", $path) ,
             "content" => $this
             ->load
             ->view('profile', $newdata, true)
@@ -75,15 +93,5 @@ class Home extends CI_Controller {
         $this
         ->load
         ->view('template/default_template', $data);
-		
 	}
-	
-	public function logout(){
-		
-		$this->session->sess_destroy();
-		$this->googleplus->revokeToken();
-		redirect('');
-		
-	}
-	
 }

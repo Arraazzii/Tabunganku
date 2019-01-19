@@ -27,7 +27,7 @@
   <div class="limiter" style="margin-top: -50px">
     <div class="container-login100" style="background-image: url('<?php echo base_url('assets/login/images/img-01.jpg')?>');">
       <div class="wrap-login100 p-t-150 p-b-30">
-        <form class="login100-form validate-form" action="">
+        <form class="login100-form validate-form" action="<?php echo base_url('Login/auth_login')?>" methods="POST">
           <div class="login100-form-avatar">
             <img src="<?php echo base_url('assets/img/3.png')?>" alt="AVATAR">
           </div>
@@ -37,7 +37,7 @@
           </span>
 
           <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-            <input class="input100" type="text" name="username" placeholder="Email">
+            <input class="input100" type="text" name="user" placeholder="Email">
             <span class="focus-input100"></span>
             <span class="symbol-input100">
               <i class="fa fa-envelope"></i>
