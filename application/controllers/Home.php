@@ -48,7 +48,7 @@ class Home extends CI_Controller {
 			redirect('Home/dashboard');
 		} 	
 		$contents['login_url'] = $this->googleplus->loginURL();
-		$this->load->view('Login/index',$contents);
+		$this->load->view('index',$contents);
 	}
 
 	public function dashboard(){

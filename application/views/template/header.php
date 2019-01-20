@@ -9,8 +9,8 @@
                                         <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                         </div>
-                        <a class="navbar-brand d-none d-lg-block d-xl-block" href="#pablo">Dashboard</a>
-                        <a class="navbar-brand float-center d-lg-none d-xl-none" href="#pablo">Dashboard</a>
+                        <a class="navbar-brand d-none d-lg-block d-xl-block" href="<?php echo site_url('Home/dashboard');?>">Dashboard</a>
+                        <a class="navbar-brand float-center d-lg-none d-xl-none" href="<?php echo site_url('Home/dashboard');?>">Dashboard</a>
                 </div>
                 <div class="photo d-lg-none d-xl-none">
                         <img src="<?php echo base_url('assets/img/anime3.png')?>" data-toggle="collapse" data-target="#navigation">
@@ -19,7 +19,7 @@
                                 <ul class="navbar-nav ml-auto ">
                                         <ul class="navbar-nav">
                                                 <li class="nav-item active">
-                                                        <a class="nav-link" href="#">Profile<span class="sr-only">(current)</span></a>
+                                                        <a class="nav-link" href="<?php echo site_url('Home/profile');?>">Profile<span class="sr-only">(current)</span></a>
                                                 </li>
                                                 <div class="dropdown-divider"></div>
                                                 <li class="nav-item">
