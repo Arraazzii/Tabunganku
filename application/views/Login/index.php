@@ -27,7 +27,7 @@
   <div class="limiter" style="margin-top: -50px">
     <div class="container-login100" style="background-image: url('<?php echo base_url('assets/login/images/img-01.jpg')?>');">
       <div class="wrap-login100 p-t-150 p-b-30">
-        <form class="login100-form validate-form" action="<?php echo base_url('Login/auth_login')?>" methods="POST">
+        <form class="login100-form validate-form" action="<?php echo base_url();?>Login/auth_login" methods="POST">
           <div class="login100-form-avatar">
             <img src="<?php echo base_url('assets/img/3.png')?>" alt="AVATAR">
           </div>

@@ -6,14 +6,14 @@ class Login extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Auth_login');
     }
 
     public function auth_login(){
         try {
             $username = $this->input->post('user');
             $password = md5($this->input->post('pass'));
-            $data = $this->Auth_login->readBy($username, $password);
+            $this->load->model('Model_Login', 'person');
+            $data = $this->person->readBy($username, $password);
             if (isset($data->email) && isset($data->password)) {
                 if($username === $data->email && $password === $data->password){
                        $newdata = array(
