@@ -6,7 +6,7 @@ class Model_Login extends CI_Model {
     var $TABLE = "table_user";
     var $COLUMN = array(
         "id",
-        "email",
+        "username",
         "password",
         "nama_depan",
         "nama_belakang",

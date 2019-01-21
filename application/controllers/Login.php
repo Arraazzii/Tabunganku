@@ -13,12 +13,12 @@ class Login extends CI_Controller {
             $username = $this->input->post('user');
             $password = md5($this->input->post('pass'));
             $data = $this->person->readBy($username, $password);
-            if (isset($data->email) && isset($data->password)) {
-                if($username === $data->email && $password === $data->password){
+            if (isset($data->username) && isset($data->password)) {
+                if($username === $data->username && $password === $data->password){
                        $newdata = array(
-                        'username'  => $data->email,
-                        'id'  => $data->id,
-                        'login' => true
+                        'username'  => $data->username,
+                        'id'        => $data->id,
+                        'login'     => true
                     );
                     $this->session->set_userdata($newdata);
                     redirect('Home/dashboard');            

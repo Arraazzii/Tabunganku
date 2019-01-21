@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2019 at 03:54 PM
+-- Generation Time: Jan 21, 2019 at 04:24 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `table_keinginan` (
   `id` int(11) NOT NULL,
-  `kode_tabungan` varchar(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `keinginan` text NOT NULL,
   `deadline` date NOT NULL,
   `jumlah_uang` varchar(30) NOT NULL
@@ -47,7 +47,7 @@ CREATE TABLE `table_nabung` (
   `tanggal_menabung` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `jumlah_nabung` varchar(30) NOT NULL,
   `catatan` text NOT NULL,
-  `kode_tabungan` varchar(11) NOT NULL
+  `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `table_nabung` (
 --
 
 CREATE TABLE `table_simpanan` (
-  `kode_tabungan` varchar(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `mata_uang` varchar(30) NOT NULL,
   `jumlah_tabungan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -70,12 +70,11 @@ CREATE TABLE `table_simpanan` (
 
 CREATE TABLE `table_user` (
   `id` int(11) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL,
   `password` text NOT NULL,
   `nama_depan` varchar(30) NOT NULL,
   `nama_belakang` varchar(30) NOT NULL,
   `tanggal_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `kode_tabungan` varchar(30) NOT NULL,
   `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -83,8 +82,8 @@ CREATE TABLE `table_user` (
 -- Dumping data for table `table_user`
 --
 
-INSERT INTO `table_user` (`id`, `email`, `password`, `nama_depan`, `nama_belakang`, `tanggal_daftar`, `kode_tabungan`, `photo`) VALUES
-(1, 'mumaraziz2014@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'Umar', 'Aziz', '2019-01-20 18:09:08', 'TB_001', '');
+INSERT INTO `table_user` (`id`, `username`, `password`, `nama_depan`, `nama_belakang`, `tanggal_daftar`, `photo`) VALUES
+(1, 'uniuniuni', 'ee11cbb19052e40b07aac0ca060c23ee', 'Umar', 'Aziz', '2019-01-21 15:04:31', '');
 
 --
 -- Indexes for dumped tables
@@ -106,7 +105,7 @@ ALTER TABLE `table_nabung`
 -- Indexes for table `table_simpanan`
 --
 ALTER TABLE `table_simpanan`
-  ADD PRIMARY KEY (`kode_tabungan`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `table_user`
