@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2019 at 03:37 PM
+-- Generation Time: Jan 21, 2019 at 03:54 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -75,8 +75,16 @@ CREATE TABLE `table_user` (
   `nama_depan` varchar(30) NOT NULL,
   `nama_belakang` varchar(30) NOT NULL,
   `tanggal_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `kode_tabungan` varchar(30) NOT NULL
+  `kode_tabungan` varchar(30) NOT NULL,
+  `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_user`
+--
+
+INSERT INTO `table_user` (`id`, `email`, `password`, `nama_depan`, `nama_belakang`, `tanggal_daftar`, `kode_tabungan`, `photo`) VALUES
+(1, 'mumaraziz2014@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'Umar', 'Aziz', '2019-01-20 18:09:08', 'TB_001', '');
 
 --
 -- Indexes for dumped tables
@@ -126,7 +134,7 @@ ALTER TABLE `table_nabung`
 -- AUTO_INCREMENT for table `table_user`
 --
 ALTER TABLE `table_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
