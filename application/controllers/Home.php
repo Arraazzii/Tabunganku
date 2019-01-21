@@ -53,7 +53,7 @@ class Home extends CI_Controller {
 
 	public function dashboard(){
 		if($this->session->userdata('login') != true){
-			redirect('Login');
+			redirect('Home');
 		}
 
 		$newdata = array();
@@ -73,7 +73,7 @@ class Home extends CI_Controller {
 
 	public function profile(){
 		if($this->session->userdata('login') != true){
-			redirect('Login/index');
+			redirect('Home');
 		}		
 
 		$contents['user_profile'] = $this->session->userdata('user_profile');
@@ -94,4 +94,19 @@ class Home extends CI_Controller {
         ->load
         ->view('template/default_template', $data);
 	}
+
+	public function daftar(){
+        if($this->session->userdata('login') == true){
+            redirect('Home/dashboard');
+        }
+
+        $newdata = array();
+
+        $path = "";
+        $data = array(
+            "page" => $this->load("Daftar", $path) ,
+            "content" => $this->load->view('daftar', $newdata, true)
+           );
+        $this->load->view('template/default_template', $data);
+    }
 }

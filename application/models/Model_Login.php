@@ -7,6 +7,7 @@ class Model_Login extends CI_Model {
     var $COLUMN = array(
         "id",
         "email",
+        "password",
         "nama_depan",
         "nama_belakang",
         "tanggal_daftar",
@@ -20,8 +21,8 @@ class Model_Login extends CI_Model {
 
     public function readBy($username){
         try {
-            // $this->db->select('*');
-            $this->db->select($this->COLUMN[0].",".$this->COLUMN[1].",".$this->COLUMN[2].",".$this->COLUMN[3].",".$this->COLUMN[4].",".$this->COLUMN[5]);
+            $this->db->select('*');
+            // $this->db->select($this->COLUMN[0].",".$this->COLUMN[1].",".$this->COLUMN[2].",".$this->COLUMN[3].",".$this->COLUMN[4].",".$this->COLUMN[5]);
             $this->db->from($this->TABLE);
             $this->db->where($this->COLUMN[1], $username);
             $query = $this->db->get();
