@@ -59,15 +59,13 @@
             <span class="badge dark-badge ml-2"></span>
             <span class="color-label">DARK MODE</span>
           </li>
-          <li></li>
-          <!-- 
           <li class="button-container">
-            <a href="https://www.creative-tim.com/product/black-dashboard" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-            <a href="https://demos.creative-tim.com/black-dashboard/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
-              Documentation
+            <!-- <a href="https://www.creative-tim.com/product/black-dashboard" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a> -->
+            <a href="#" class="btn btn-default btn-block btn-round">
+              Change Password
             </a>
           </li>
-          <li class="header-title">Thank you for 95 shares!</li>
+          <!-- <li class="header-title">Thank you for 95 shares!</li>
           <li class="button-container text-center">
             <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
             <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>

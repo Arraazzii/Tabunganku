@@ -60,7 +60,7 @@ class Home extends CI_Controller {
 
 		$path = "";
         $data = array(
-            "page" => $this->load("User - Dashboard", $path) ,
+            "page" => $this->load("Dashboard", $path) ,
             "content" => $this
             ->load
             ->view('dashboard', $newdata, true)
@@ -84,7 +84,7 @@ class Home extends CI_Controller {
 		
 		$path = "";
         $data = array(
-            "page" => $this->load("User - Profile", $path) ,
+            "page" => $this->load("Profile", $path) ,
             "content" => $this
             ->load
             ->view('profile', $newdata, true)
