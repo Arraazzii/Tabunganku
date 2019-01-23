@@ -5,6 +5,8 @@ class Home extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Model_Login', 'person');
+		$this->load->model('Model_Profile', 'profil');
 	}
 
 	/**
@@ -44,6 +46,7 @@ class Home extends CI_Controller {
 			
 			$this->googleplus->getAuthenticate();
 			$this->session->set_userdata('login',true);
+			$this->session->set_userdata('type','google');
 			$this->session->set_userdata('user_profile', $this->googleplus->getUserInfo());
 			redirect('Home/dashboard');
 		} 	
@@ -56,7 +59,13 @@ class Home extends CI_Controller {
 			redirect('Home');
 		}
 
-		$newdata = array();
+		$username = $this->session->userdata('username');
+		$user = $this->person->readby($username);
+
+		$newdata = array(
+			'user' => $user,
+		);
+
 
 		$path = "";
         $data = array(
@@ -76,10 +85,13 @@ class Home extends CI_Controller {
 			redirect('Home');
 		}		
 
+		$username = $this->session->userdata('username');
 		$contents['user_profile'] = $this->session->userdata('user_profile');
+		$user = $this->person->readby($username);
 
 		$newdata = array(
 			'profile' => $contents['user_profile'],
+			'user' => $user
 		);
 		
 		$path = "";
@@ -95,18 +107,90 @@ class Home extends CI_Controller {
         ->view('template/default_template', $data);
 	}
 
-	public function daftar(){
-        if($this->session->userdata('login') == true){
-            redirect('Home/dashboard');
-        }
+	public function tabungan(){
+		if($this->session->userdata('login') != true){
+			redirect('Home');
+		}		
 
-        $newdata = array();
+		$username = $this->session->userdata('username');
+		$contents['user_profile'] = $this->session->userdata('user_profile');
+		$user = $this->person->readby($username);
 
-        $path = "";
+		$newdata = array(
+			'profile' => $contents['user_profile'],
+			'user' => $user
+		);
+		
+		$path = "";
         $data = array(
-            "page" => $this->load("Daftar", $path) ,
-            "content" => $this->load->view('daftar', $newdata, true)
+            "page" => $this->load("Tabungan", $path) ,
+            "content" => $this
+            ->load
+            ->view('tabungan', $newdata, true)
            );
-        $this->load->view('template/default_template', $data);
+
+        $this
+        ->load
+        ->view('template/default_template', $data);
+	}
+
+	public function change_pass()
+	{
+	  $user = $this->session->userdata('username');
+	  $pass1 = $this->input->post('pass1');
+      $pass2 = $this->input->post('pass2');
+
+	  $pass = $this->person->readby($user);
+	  if ($pass1 != $pass2) {
+	    alert('password tidak sama!');
+	  } elseif ($pass1 == $pass2) {
+	    $data = array(
+	      'password' => md5($pass1),
+	      'status' => '1'
+	  );
+
+	  $this->profil->updatePass($pass->username, $data);
+	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Password Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('Home/dashboard');
+	  }
+	}
+
+	public function change_profile()
+	{
+	  $userid 	= $this->session->userdata('id');
+	  $username = $this->input->post('username');
+      $fname 	= $this->input->post('fname');
+      $lname 	= $this->input->post('lname');
+
+	  $akun = $this->person->readby($userid);
+	  
+	  $data = array(
+	      'username' => $username,
+	      'nama_depan' => $fname,
+	      'nama_belakang' => $lname
+	  );
+
+	  $this->profil->updateProfile($userid, $data);
+	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Data Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      redirect('Home/profile', 'refresh');
+	}
+
+	public function logout(){
+        $this->session->sess_destroy();
     }
+
+	// public function daftar(){
+ //        if($this->session->userdata('login') == true){
+ //            redirect('Home/dashboard');
+ //        }
+
+ //        $newdata = array();
+
+ //        $path = "";
+ //        $data = array(
+ //            "page" => $this->load("Daftar", $path) ,
+ //            "content" => $this->load->view('daftar', $newdata, true)
+ //           );
+ //        $this->load->view('template/default_template', $data);
+ //   }   
 }

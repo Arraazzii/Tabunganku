@@ -59,19 +59,21 @@
             </button>
           </div>
 
-          <div class="text-center w-full p-t-25 p-b-100">
-            Or&nbsp&nbsp
+          <div class="text-center w-full p-t-25 p-b-120">
+            <a class="txt1" href="<?php echo base_url();?>Login/login_guest">
+              <i class="fa fa-user-secret"></i>&nbspLogin as Guest          
+            </a>
+            &nbsp&nbspOr&nbsp&nbsp
             <a href="<?= $login_url; ?>" class="txt1">
               <i class="fa fa-google"></i>&nbspLogin With Google
             </a>
           </div>
 
-          <div class="text-center w-full">
-            <a class="txt1" href="<?php echo base_url();?>Home/daftar">
-              Create new account
-              <i class="fa fa-long-arrow-right"></i>            
+          <!-- <div class="text-center w-full">
+            <a class="txt1" href="<?php echo base_url();?>Home/daftar" style="color:transparent">
+              sadasdas         
             </a>
-          </div>
+          </div> -->
         </form>
       </div>
     </div>

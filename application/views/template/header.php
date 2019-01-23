@@ -13,7 +13,7 @@
                         <a class="navbar-brand float-center d-lg-none d-xl-none" href="<?php echo site_url('Home/dashboard');?>">Dashboard</a>
                 </div>
                 <div class="photo d-lg-none d-xl-none">
-                        <img src="<?php echo base_url('assets/img/anime3.png')?>" data-toggle="collapse" data-target="#navigation">
+                        <img src="<?php echo base_url('assets/img/3.png')?>" data-toggle="collapse" data-target="#navigation">
                 </div>
                         <div class="collapse navbar-collapse" id="navigation">
                                 <ul class="navbar-nav ml-auto ">

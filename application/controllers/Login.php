@@ -18,7 +18,8 @@ class Login extends CI_Controller {
                        $newdata = array(
                         'username'  => $data->username,
                         'id'        => $data->id,
-                        'login'     => true
+                        'login'     => true,
+                        'type'      => 'local'
                     );
                     $this->session->set_userdata($newdata);
                     redirect('Home/dashboard');            
@@ -31,6 +32,47 @@ class Login extends CI_Controller {
                     redirect('Home');
             }
     }
+
+    public function login_guest() {
+        $id         = rand(1,99999).rand(1,99999).rand(1,99999).rand(1,99999);
+        $username   = "guest". rand(1,99999999);
+        $pass       = $this->randpass();
+        $password   = md5($pass);
+        $photo      = "default-avatar.png";
+
+        $log_gs = array(
+          'id' => $id,
+          'username' => $username,
+          'password' => $password,
+          'nama_depan' => "Guest",
+          'nama_belakang' => rand(1,99999999),
+          'photo' => $photo,
+          'status' => '0'
+        );
+
+        $this->db->insert("table_user", $log_gs);
+        $newdata = array(
+            'username'  => $username,
+            'id'        => $id,
+            'login'     => true,
+            'type'      => 'local'
+        );
+        $this->session->set_userdata($newdata);
+        redirect('Home/dashboard'); 
+    }
+
+    public function randpass(){
+        //    karakter password
+        $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_";
+        $len = strlen($string);
+        $pass = '';
+        
+        //    generate password
+        for($i = 0; $i <='6'; $i++){
+          $pass .= $string[rand(0, $len - 1)];
+        }
+        return $pass;
+  }
 
     public function logout(){
         $this->session->sess_destroy();

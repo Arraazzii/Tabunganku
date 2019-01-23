@@ -11,7 +11,8 @@ class Model_Login extends CI_Model {
         "nama_depan",
         "nama_belakang",
         "tanggal_daftar",
-        "kode_tabungan"
+        "photo",
+        "status"
     );
 
     function __construct(){

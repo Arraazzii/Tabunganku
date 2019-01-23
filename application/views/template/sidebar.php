@@ -6,14 +6,19 @@
                 </div>
       </a>
 
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <a href="#" class="simple-text logo-normal">
        Tabunganku
       </a>
     </div>
 
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <!-- Nav Disini -->
+          <li>
+            <a href="../Home/tabungan">
+              <i class="tim-icons icon-coins"></i>
+              <p>Saving</p>
+            </a>
+          </li>
       </ul>
     </div>
 </div>
