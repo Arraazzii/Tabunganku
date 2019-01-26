@@ -35,7 +35,7 @@ class Login extends CI_Controller {
 
     public function login_guest() {
         $id         = rand(1,99999).rand(1,99999).rand(1,99999).rand(1,99999);
-        $username   = "guest". rand(1,99999999);
+        $username   = $this->input->post('username');
         $pass       = $this->randpass();
         $password   = md5($pass);
         $photo      = "default-avatar.png";

@@ -136,11 +136,11 @@ class Home extends CI_Controller {
 
 	public function change_pass()
 	{
-	  $user = $this->session->userdata('username');
+	  $sess = $this->session->userdata('id');
 	  $pass1 = $this->input->post('pass1');
       $pass2 = $this->input->post('pass2');
+      $index = '0';
 
-	  $pass = $this->person->readby($user);
 	  if ($pass1 != $pass2) {
 	    alert('password tidak sama!');
 	  } elseif ($pass1 == $pass2) {
@@ -149,7 +149,7 @@ class Home extends CI_Controller {
 	      'status' => '1'
 	  );
 
-	  $this->profil->updatePass($pass->username, $data);
+	  $this->profil->update($sess, $data, $index);
 	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Password Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       redirect('Home/dashboard');
 	  }
@@ -157,12 +157,11 @@ class Home extends CI_Controller {
 
 	public function change_profile()
 	{
-	  $userid 	= $this->session->userdata('id');
+	  $sess 	= $this->session->userdata('id');
 	  $username = $this->input->post('username');
       $fname 	= $this->input->post('fname');
       $lname 	= $this->input->post('lname');
-
-	  $akun = $this->person->readby($userid);
+      $index 	= '0';
 	  
 	  $data = array(
 	      'username' => $username,
@@ -170,27 +169,8 @@ class Home extends CI_Controller {
 	      'nama_belakang' => $lname
 	  );
 
-	  $this->profil->updateProfile($userid, $data);
+	  $this->profil->update($sess, $data, $index);
 	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Data Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-      redirect('Home/profile', 'refresh');
+      redirect('Home/profile');
 	}
-
-	public function logout(){
-        $this->session->sess_destroy();
-    }
-
-	// public function daftar(){
- //        if($this->session->userdata('login') == true){
- //            redirect('Home/dashboard');
- //        }
-
- //        $newdata = array();
-
- //        $path = "";
- //        $data = array(
- //            "page" => $this->load("Daftar", $path) ,
- //            "content" => $this->load->view('daftar', $newdata, true)
- //           );
- //        $this->load->view('template/default_template', $data);
- //   }   
 }

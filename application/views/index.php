@@ -60,7 +60,7 @@
           </div>
 
           <div class="text-center w-full p-t-25 p-b-120">
-            <a class="txt1" href="<?php echo base_url();?>Login/login_guest">
+            <a class="txt1" href="" data-toggle="modal" data-target="#searchModal">
               <i class="fa fa-user-secret"></i>&nbspLogin as Guest          
             </a>
             &nbsp&nbspOr&nbsp&nbsp
@@ -68,12 +68,6 @@
               <i class="fa fa-google"></i>&nbspLogin With Google
             </a>
           </div>
-
-          <!-- <div class="text-center w-full">
-            <a class="txt1" href="<?php echo base_url();?>Home/daftar" style="color:transparent">
-              sadasdas         
-            </a>
-          </div> -->
         </form>
       </div>
     </div>
@@ -94,3 +88,22 @@
 
 </body>
 </html>
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true" style="position: absolute;top:100px">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="<?php echo base_url();?>Login/login_guest" method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Username</label><br>
+            <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="login100-form-btn" type="submit">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2019 at 04:24 PM
+-- Generation Time: Jan 24, 2019 at 04:52 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -69,21 +69,15 @@ CREATE TABLE `table_simpanan` (
 --
 
 CREATE TABLE `table_user` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` text NOT NULL,
   `nama_depan` varchar(30) NOT NULL,
   `nama_belakang` varchar(30) NOT NULL,
   `tanggal_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `photo` text NOT NULL
+  `photo` text NOT NULL,
+  `status` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `table_user`
---
-
-INSERT INTO `table_user` (`id`, `username`, `password`, `nama_depan`, `nama_belakang`, `tanggal_daftar`, `photo`) VALUES
-(1, 'uniuniuni', 'ee11cbb19052e40b07aac0ca060c23ee', 'Umar', 'Aziz', '2019-01-21 15:04:31', '');
 
 --
 -- Indexes for dumped tables
@@ -128,12 +122,6 @@ ALTER TABLE `table_keinginan`
 --
 ALTER TABLE `table_nabung`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `table_user`
---
-ALTER TABLE `table_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
