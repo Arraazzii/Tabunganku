@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Model_Login', 'person');
 		$this->load->model('Model_Profile', 'profil');
+		$this->load->model('Model_Wishes', 'wish');
 	}
 
 	/**
@@ -134,6 +135,36 @@ class Home extends CI_Controller {
         ->view('template/default_template', $data);
 	}
 
+	public function keinginan(){
+		if($this->session->userdata('login') != true){
+			redirect('Home');
+		}		
+
+		$username = $this->session->userdata('username');
+		$contents['user_profile'] = $this->session->userdata('user_profile');
+		$user = $this->person->readby($username);
+		$wish = $this->wish->tampil_Keinginan($username);
+
+		$newdata = array(
+			'profile' => $contents['user_profile'],
+			'user' => $user,
+			'wish' => $wish
+		);
+		
+		$path = "";
+        $data = array(
+            "page" => $this->load("Keinginan", $path) ,
+            "content" => $this
+            ->load
+            ->view('keinginan', $newdata, true)
+           );
+
+        $this
+        ->load
+        ->view('template/default_template', $data);
+	}
+
+
 	public function change_pass()
 	{
 	  $sess = $this->session->userdata('id');
@@ -173,4 +204,81 @@ class Home extends CI_Controller {
 	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Data Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       redirect('Home/profile');
 	}
+
+	// Tambah Keinginan
+	public function tambahKeinginan()
+	{
+		$sess 			= $this->input->post('username');
+		$keinginan 		= $this->input->post('keinginan');
+	    $batas_waktu 	= $this->input->post('batas_waktu');
+	    $jumlah_uang	= $this->input->post('jumlah_uang');
+
+		$data = array(
+
+			'username'		=> $sess,
+			'keinginan' 	=> $keinginan,
+			'deadline' 		=> $batas_waktu,
+			'jumlah_uang' 	=> $jumlah_uang
+			
+		);
+
+		$this->wish->simpan_Keinginan($data);
+
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+			<button type="button" class="close" data-dismiss="alert">&times</button>
+			                                    </div>');
+
+		//redirect
+		redirect('Home/keinginan');
+	}
+
+	// Update
+	public function updateKeinginan()
+	{
+		$id 			= $this->input->post('id');
+		$keinginan 		= $this->input->post('keinginan');
+	    $batas_waktu 	= $this->input->post('batas_waktu');
+	    $jumlah_uang	= $this->input->post('jumlah_uang');
+
+		$data = array(
+
+			'keinginan' 	=> $keinginan,
+			'deadline' 		=> $batas_waktu,
+			'jumlah_uang' 	=> $jumlah_uang
+			
+		);
+
+        $this
+        ->db
+        ->where('id', $id);
+        $this
+        ->db
+        ->update('table_keinginan', $data);
+
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+			<button type="button" class="close" data-dismiss="alert">&times</button>
+			                                    </div>');
+
+		//redirect
+		redirect('Home/keinginan');
+	}
+
+	// Hapus Keinginan
+    public function hapus_Keinginan(){
+        $kode = $this->uri->segment(3);
+
+        $this
+        ->db
+        ->where('id', $kode);
+        $this
+        ->db
+        ->delete('table_keinginan');
+
+            $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
+            Success! Kode Klui telah di hapus.
+            <button type="button" class="close" data-dismiss="alert">&times</button>
+                                                </div>');
+            redirect('Home/keinginan');
+
+    }
 }

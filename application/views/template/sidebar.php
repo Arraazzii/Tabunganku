@@ -19,6 +19,12 @@
               <p>Saving</p>
             </a>
           </li>
+          <li>
+            <a href="../Home/keinginan">
+              <i class="tim-icons icon-heart-2"></i>
+              <p>Wishes</p>
+            </a>
+          </li>
       </ul>
     </div>
 </div>
