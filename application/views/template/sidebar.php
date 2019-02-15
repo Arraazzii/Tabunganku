@@ -25,6 +25,12 @@
               <p>Wishes</p>
             </a>
           </li>
+          <li>
+            <a href="../Home/celengan">
+              <i class="tim-icons icon-money-coins"></i>
+              <p>MoneyBox</p>
+            </a>
+          </li>
       </ul>
     </div>
 </div>

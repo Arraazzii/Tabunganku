@@ -8,6 +8,7 @@ class Home extends CI_Controller {
 		$this->load->model('Model_Login', 'person');
 		$this->load->model('Model_Profile', 'profil');
 		$this->load->model('Model_Wishes', 'wish');
+		$this->load->model('Model_Celeng', 'celeng');
 	}
 
 	/**
@@ -164,7 +165,6 @@ class Home extends CI_Controller {
         ->view('template/default_template', $data);
 	}
 
-
 	public function change_pass()
 	{
 	  $sess = $this->session->userdata('id');
@@ -281,4 +281,108 @@ class Home extends CI_Controller {
             redirect('Home/keinginan');
 
     }
+
+	// CELENGAN
+	public function celengan(){
+		if($this->session->userdata('login') != true){
+			redirect('Home');
+		}		
+
+		$username = $this->session->userdata('username');
+		$contents['user_profile'] = $this->session->userdata('user_profile');
+		$user = $this->person->readby($username);
+		$celeng = $this->celeng->tampil_celengan($username);
+
+		$newdata = array(
+			'profile' => $contents['user_profile'],
+			'user' => $user,
+			'celeng' => $celeng
+		);
+		
+		$path = "";
+        $data = array(
+            "page" => $this->load("celengan", $path) ,
+            "content" => $this
+            ->load
+            ->view('celengan', $newdata, true)
+           );
+
+        $this
+        ->load
+        ->view('template/default_template', $data);
+	}
+
+	// Tambah Celengan
+	public function tambahcelengan()
+	{
+		$sess 			= $this->input->post('username');
+		$namacelengan	= $this->input->post('namacelengan');
+	    $deskripsi	 	= $this->input->post('deskripsi');
+
+		$data = array(
+
+			'username'		=> $sess,
+			'nama_celengan' => $namacelengan,
+			'deskripsi'		=> $deskripsi,
+			'jumlah_uang' 	=> '0'
+		);
+
+		$this->celeng->simpan_celengan($data);
+
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+			<button type="button" class="close" data-dismiss="alert">&times</button>
+			                                    </div>');
+
+		//redirect
+		redirect('Home/celengan');
+	}
+
+	// Update
+	public function updatecelengan()
+	{
+		$id 			= $this->input->post('id');
+		$namacelengan	= $this->input->post('namacelengan');
+	    $deskripsi	 	= $this->input->post('deskripsi');
+
+		$data = array(
+
+			'nama_celengan' => $namacelengan,
+			'deskripsi'		=> $deskripsi
+			
+		);
+
+        $this
+        ->db
+        ->where('id', $id);
+        $this
+        ->db
+        ->update('table_celengan', $data);
+
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+			<button type="button" class="close" data-dismiss="alert">&times</button>
+			                                    </div>');
+
+		//redirect
+		redirect('Home/celengan');
+	}
+
+	// Hapus Celengan
+    public function hapus_celengan(){
+        $kode = $this->uri->segment(3);
+
+        $this
+        ->db
+        ->where('id', $kode);
+        $this
+        ->db
+        ->delete('table_celengan');
+
+            $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
+            Success! Celengan telah di hapus.
+            <button type="button" class="close" data-dismiss="alert">&times</button>
+                                                </div>');
+            redirect('Home/celengan');
+
+    }    
+
 }

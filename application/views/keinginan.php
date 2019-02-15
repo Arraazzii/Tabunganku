@@ -1,60 +1,24 @@
 <div class="content">
   <?php echo $this->session->flashdata('notif') ?>
-	<div class="card">
-    <a class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalKeinginan">Tambah</a>
-  </div>
-  <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Wishes List</h4>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table tablesorter" id="">
-              <thead class=" text-primary">
-                <tr>
-                  <th>
-                    No.
-                  </th>
-                  <th>
-                    Wishes
-                  </th>
-                  <th>
-                    Amount
-                  </th>
-                  <th>
-                    Deadline
-                  </th>
-                  <th>
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1; foreach ($wish as $q) { ?>
-                  <tr>
-                    <td>
-                      <?= $no++; ?>
-                    </td>
-                    <td>
-                      <?= $q->keinginan; ?>
-                    </td>
-                    <td>
-                      <?= $q->deadline; ?>
-                    </td>
-                    <td>
-                      <?= $q->jumlah_uang; ?>
-                    </td>
-                    <td>
-                      <a class="btn btn-info btn-xs animation-on-hover" href="" data-toggle="modal" data-target="#modalEditKeinginan<?= $q->id; ?>"><span class="tim-icons icon-pencil"></span></a>
-                      <a class="btn btn-danger btn-xs animation-on-hover" href="<?php echo base_url(); ?>Home/hapus_Keinginan/<?php echo $q->id; ?>" ><span class="tim-icons icon-trash-simple"></span></a>
-                    </td>
-                  </tr>
-                <?php } ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalKeinginan">Tambah</a>
     </div>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <?php $no = 1; foreach ($wish as $q) { ?>
+    <div class="col-sm-4">
+      <div class="card text-white">
+        <img class="card-img" src="../assets/img/1280x720.jpg" alt="Card image">
+          <div class="card-img-overlay">
+            <h5 class="card-title text-white"><?= $q->keinginan; ?></h5>
+            <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little   bit   longer.</p>
+            <p class="card-text text-white"><?= $q->deadline; ?> (<?= $q->jumlah_uang; ?>)</p>
+          </div>
+      </div>
+    </div>
+    <?php } ?>
+  </div> 
 </div>
 
 <div class="modal fade" id="modalKeinginan" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true" style="position: absolute;top:100px">
@@ -81,7 +45,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="login100-form-btn" type="submit">
+          <button style="width: 100%" class="btn btn-info animation-on-hover" type="submit">
             Tambah
           </button>
         </div>
@@ -119,7 +83,7 @@ foreach ($wish as $row) {
           </div>
         </div>
         <div class="modal-footer">
-          <button class="login100-form-btn" type="submit">
+          <button class="btn btn-info animation-on-hover" type="submit">
             Tambah
           </button>
         </div>

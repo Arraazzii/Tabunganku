@@ -24,16 +24,16 @@
 <!--===============================================================================================-->
 </head>
 <body>
-  <div class="limiter" style="margin-top: -50px">
+  <div class="limiter">
     <div class="container-login100" style="background-image: url('<?php echo base_url('assets/login/images/img-01.jpg')?>');">
-      <div class="wrap-login100 p-t-150 p-b-30">
+      <div class="wrap-login100 p-t-100">
           <?=$this->session->flashdata('notif')?>
         <form class="login100-form validate-form" action="<?php echo base_url();?>Login/auth_login" method="POST">
           <div class="login100-form-avatar">
             <img src="<?php echo base_url('assets/img/3.png')?>" alt="AVATAR">
           </div>
 
-          <span class="login100-form-title p-t-20 p-b-45">
+          <span class="login100-form-title p-t-10 p-b-45">
             TABUNGANKU
           </span>
 
@@ -100,7 +100,7 @@
         </div>
         <div class="modal-footer">
           <button class="login100-form-btn" type="submit">
-            Login
+            Sign Up
           </button>
         </div>
       </form>
