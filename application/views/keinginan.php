@@ -12,7 +12,7 @@
         <img class="card-img" src="../assets/img/1280x720.jpg" alt="Card image">
           <div class="card-img-overlay">
             <h5 class="card-title text-white"><?= $q->keinginan; ?></h5>
-            <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little   bit   longer.</p>
+            <!-- <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little   bit   longer.</p> -->
             <p class="card-text text-white"><?= $q->deadline; ?> (<?= $q->jumlah_uang; ?>)</p>
           </div>
       </div>
@@ -41,7 +41,7 @@
           </div>
           <div class="form-group">
             <label style="color: black;">Jumlah Uang</label><br>
-            <input type="number" name="jumlah_uang" class="form-control" placeholder="Keinginan" autocomplete="off">
+            <input type="number" name="jumlah_uang" class="form-control" placeholder="Jumlah Uang" autocomplete="off">
           </div>
         </div>
         <div class="modal-footer">

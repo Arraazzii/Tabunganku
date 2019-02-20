@@ -116,11 +116,15 @@ class Home extends CI_Controller {
 
 		$username = $this->session->userdata('username');
 		$contents['user_profile'] = $this->session->userdata('user_profile');
-		$user = $this->person->readby($username);
+		$user 	= $this->person->readby($username);
+		$celeng = $this->celeng->tampil_celengan($username);
+		$history = $this->celeng->tampil_history($username);
 
 		$newdata = array(
 			'profile' => $contents['user_profile'],
-			'user' => $user
+			'user' => $user,
+			'celeng' => $celeng,
+			'history' => $history
 		);
 		
 		$path = "";
@@ -134,6 +138,54 @@ class Home extends CI_Controller {
         $this
         ->load
         ->view('template/default_template', $data);
+	}
+
+	public function menabung(){
+		error_reporting(0);
+		$username 		= $this->input->post('username');
+	    $jumlah_uang	= $this->input->post('jumlah_uang');
+	    $celengan 		= $this->input->post('celengan');
+	    $deskripsi 		= $this->input->post('deskripsi');
+	    $timestamp 		= date("Y-m-d H:i:s");
+
+	    $data = array(
+	      'username' => $username,
+	      'jumlah_tabungan' => $jumlah_uang
+	  	);
+
+	    $otherdata = array(
+	      'tanggal_menabung' => $timestamp,
+	      'jumlah_nabung' => $jumlah_uang,
+	      'catatan' => $deskripsi,
+	      'username' => $username
+	  	);
+
+	  	$this->celeng->history_nabung($username, $otherdata);
+	  	$check 		= $this->celeng->check_user($username);
+	  	$saatini 	= $check->jumlah_tabungan;
+	    $hasil   	= $saatini + $jumlah_uang;
+	    $itung 		= count($check);
+
+	    if ($itung < 1) {
+	    	$this->celeng->menabung($username, $data);
+	    } else {
+	    	$data = array(
+	    		'jumlah_tabungan' => $hasil
+	    	);
+	    	$this->db->where('username', $username);
+        	$this->db->update('table_simpanan', $data);
+	    }
+
+	    $box 				= $this->celeng->select_celengan($celengan);
+	    $celengansaatini 	= $box->jumlah_uang;
+	    $celenganbaru		= $celengansaatini + $jumlah_uang;
+	    $dataceleng = array(
+	    	'jumlah_uang' => $celenganbaru
+	    );
+	    $this->db->where('id', $celengan);
+        $this->db->update('table_celengan', $dataceleng);
+        $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Menabung Berhasil <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      	redirect('Home/tabungan');
 	}
 
 	public function keinginan(){
