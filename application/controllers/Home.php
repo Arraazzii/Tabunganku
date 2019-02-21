@@ -166,7 +166,7 @@ class Home extends CI_Controller {
 		$output = array(
 						"draw" => $_POST['draw'],
 						"recordsTotal" => $this->celeng->count_all($username),
-						"recordsFiltered" => $this->celeng->count_filtered(),
+						"recordsFiltered" => $this->celeng->count_filtered($username),
 						"data" => $data,
 				);
 		//output to json format
