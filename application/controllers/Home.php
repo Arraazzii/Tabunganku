@@ -164,7 +164,6 @@ class Home extends CI_Controller {
 		}
 
 		$output = array(
-						"username" => $this->session->userdata('username'),
 						"draw" => $_POST['draw'],
 						"recordsTotal" => $this->celeng->count_all($username),
 						"recordsFiltered" => $this->celeng->count_filtered($username),

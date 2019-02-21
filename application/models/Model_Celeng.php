@@ -137,8 +137,9 @@ class Model_Celeng extends CI_Model {
 
     public function count_all($username)
     {
-        $this->db->from($this->table);
-        return $this->db->count_all_results($username);
+        $this->db->from('table_nabung')
+                 ->where('username', $username);
+        $this->db->count_all_results();
     }
 
     //Insert History Nabung
