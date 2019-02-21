@@ -152,7 +152,6 @@ class Home extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $nabung) {
-			$no++;
 			$row = array();
 			$row[] = $no;
 			$row[] = $nabung->tanggal_menabung;
@@ -161,12 +160,13 @@ class Home extends CI_Controller {
 
 
 			$data[] = $row;
+			$no++;
 		}
 
 		$output = array(
 						"draw" => $_POST['draw'],
 						"recordsTotal" => $this->celeng->count_all($username),
-						"recordsFiltered" => $this->celeng->count_filtered($username),
+						"recordsFiltered" => $this->celeng->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format

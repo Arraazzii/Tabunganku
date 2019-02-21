@@ -3,9 +3,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Model_Celeng extends CI_Model {
 
-    var $table = 'table_nabung';
-    var $column_order = array('tanggal_menabung','jumlah_nabung','catatan'); //set column field database for datatable orderable
-    var $column_search = array('tanggal_menabung','jumlah_nabung','catatan'); //set column field database for datatable searchable just firstname , lastname , address are searchable
+    var $table          = 'table_nabung';
+    var $column_order   = array('tanggal_menabung','jumlah_nabung','catatan'); //set column field database for datatable orderable
+    var $column_search  = array('tanggal_menabung','jumlah_nabung','catatan'); //set column field database for datatable searchable just firstname , lastname , address are searchable
     var $where = array('username');
     var $order = array('id' => 'asc'); // default order
 
@@ -81,10 +81,8 @@ class Model_Celeng extends CI_Model {
 
     private function _get_datatables_query($username)
     {
-        
-        $this->db->where($this->table.'.username', $username);
-
         $this->db->from($this->table);
+        $this->db->where('table_nabung.username=', $username);
         $i = 0;
     
         foreach ($this->column_search as $item) // loop column 
@@ -128,9 +126,9 @@ class Model_Celeng extends CI_Model {
         return $query->result();
     }
 
-    public function count_filtered($username)
+    public function count_filtered()
     {
-        $this->_get_datatables_query($username);
+        $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
     }
