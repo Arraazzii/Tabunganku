@@ -14,8 +14,8 @@
         </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table id="table-1" class="table tablesorter" cellspacing="0" width="100%">
-                <thead class=" text-primary">
+              <table id="table-1" class="table display" cellspacing="0" width="100%">
+                <thead class="text-primary">
                   <tr>
                     <th>
                       No
@@ -90,7 +90,7 @@ var table;
 $(document).ready(function() {
 
     //datatables
-    table = $('#table-1').DataTable({ 
+    var table = $('#table-1').DataTable({ 
 
         "processing": true, //Feature control the processing indicator.
         "serverSide": true, //Feature control DataTables' server-side processing mode.
