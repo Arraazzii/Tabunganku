@@ -142,8 +142,7 @@ $(document).ready(function() {
         // Load data for the table's content from an Ajax source
         "ajax": {
             "url": "<?php echo site_url('Home/ajax_list')?>",
-            "type": "POST",
-            "dataSrc": ""
+            "type": "POST"
         },
 
         //Set column definition initialisation properties.
