@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2019 at 04:52 PM
+-- Generation Time: Feb 21, 2019 at 03:44 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -25,6 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `table_celengan`
+--
+
+CREATE TABLE `table_celengan` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `nama_celengan` varchar(30) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `jumlah_uang` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_celengan`
+--
+
+INSERT INTO `table_celengan` (`id`, `username`, `nama_celengan`, `deskripsi`, `jumlah_uang`) VALUES
+(2, 'mumaraziz2014@gmail.com', 'ASFA', 'ASF', '0'),
+(3, 'mumaraziz2014@gmail.com', 'asfa', 'asfsaf', '0'),
+(4, 'Uni', 'as', 'saf', '6001000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `table_keinginan`
 --
 
@@ -33,7 +56,9 @@ CREATE TABLE `table_keinginan` (
   `username` varchar(30) NOT NULL,
   `keinginan` text NOT NULL,
   `deadline` date NOT NULL,
-  `jumlah_uang` varchar(30) NOT NULL
+  `jumlah_uang` varchar(30) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -50,6 +75,16 @@ CREATE TABLE `table_nabung` (
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `table_nabung`
+--
+
+INSERT INTO `table_nabung` (`id`, `tanggal_menabung`, `jumlah_nabung`, `catatan`, `username`) VALUES
+(34, '2019-02-20 15:45:37', '500', 'Tai', 'Uni'),
+(35, '2019-02-20 15:45:50', '500', 'lagi', 'Uni'),
+(36, '2019-02-20 15:50:52', '1000000', 'asfasf', 'Uni'),
+(37, '2019-02-20 16:32:56', '5000000', 'sadfasdf', 'Uni');
+
 -- --------------------------------------------------------
 
 --
@@ -58,9 +93,15 @@ CREATE TABLE `table_nabung` (
 
 CREATE TABLE `table_simpanan` (
   `username` varchar(30) NOT NULL,
-  `mata_uang` varchar(30) NOT NULL,
   `jumlah_tabungan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_simpanan`
+--
+
+INSERT INTO `table_simpanan` (`username`, `jumlah_tabungan`) VALUES
+('Uni', '6001000');
 
 -- --------------------------------------------------------
 
@@ -80,8 +121,21 @@ CREATE TABLE `table_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `table_user`
+--
+
+INSERT INTO `table_user` (`id`, `username`, `password`, `nama_depan`, `nama_belakang`, `tanggal_daftar`, `photo`, `status`) VALUES
+('3165748111392613330', 'Uni', 'e52805d8344b67b9b3554d45f1c8958f', 'Seruni', 'Sandya', '2019-02-13 05:57:45', 'default-avatar.png', '1');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `table_celengan`
+--
+ALTER TABLE `table_celengan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_keinginan`
@@ -112,6 +166,12 @@ ALTER TABLE `table_user`
 --
 
 --
+-- AUTO_INCREMENT for table `table_celengan`
+--
+ALTER TABLE `table_celengan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `table_keinginan`
 --
 ALTER TABLE `table_keinginan`
@@ -121,7 +181,7 @@ ALTER TABLE `table_keinginan`
 -- AUTO_INCREMENT for table `table_nabung`
 --
 ALTER TABLE `table_nabung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
