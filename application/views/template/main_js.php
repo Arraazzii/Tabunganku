@@ -11,6 +11,9 @@
 <script src="<?php echo base_url('assets/js/plugins/bootstrap-notify.js')?>"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?php echo base_url('assets/js/black-dashboard.js?v=1.0.0')?>" type="text/javascript"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
     <script>
       $(document).ready(function() {
         $().ready(function() {

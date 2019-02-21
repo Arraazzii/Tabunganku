@@ -140,6 +140,41 @@ class Home extends CI_Controller {
         ->view('template/default_template', $data);
 	}
 
+	// Ajax Serverside
+	public function get_alldata(){
+        echo json_encode($this->celeng->get_alldata());
+    }
+
+    public function ajax_list()
+	{
+		$username = $this->session->userdata('username');
+		$list = $this->celeng->get_datatables($username);
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $nabung) {
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $nabung->tanggal_menabung;
+			$row[] = $nabung->jumlah_nabung;
+			$row[] = $nabung->catatan;
+
+
+			$data[] = $row;
+		}
+
+		$output = array(
+						"username" => $this->session->userdata('username'),
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->celeng->count_all($username),
+						"recordsFiltered" => $this->celeng->count_filtered($username),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+    // End Of Ajax Serverside
+
 	public function menabung(){
 		error_reporting(0);
 		$username 		= $this->input->post('username');

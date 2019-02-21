@@ -1,3 +1,4 @@
+
 <div class="content">
   <?php echo $this->session->flashdata('notif') ?>
   <div class="row">
@@ -48,6 +49,40 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Saving History</h4>
+        </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="table-1" class="table tablesorter" cellspacing="0" width="100%">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>
+                      No
+                    </th>
+                    <th>
+                      Time
+                    </th>
+                    <th>
+                      Amount
+                    </th>
+                    <th>
+                      Note
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal Tabung -->
@@ -89,3 +124,46 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+
+var table;
+
+$(document).ready(function() {
+
+    //datatables
+    table = $('#table-1').DataTable({ 
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('Home/ajax_list')?>",
+            "type": "POST",
+            "dataSrc": ""
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+        },
+        ],
+
+    });
+
+    $('#btn-filter').click(function(){ //button filter event click
+        table.ajax.reload();  //just reload table
+    });
+    $('#btn-reset').click(function(){ //button reset event click
+        $('#form-filter')[0].reset();
+        table.ajax.reload();  //just reload table
+    });
+
+});
+
+</script>

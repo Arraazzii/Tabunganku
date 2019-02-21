@@ -14,5 +14,10 @@
     <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/css/black-dashboard.css?v=1.0.0');?>" rel="stylesheet" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
  </head>
