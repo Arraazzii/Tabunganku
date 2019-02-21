@@ -126,9 +126,9 @@ class Model_Celeng extends CI_Model {
         return $query->result();
     }
 
-    public function count_filtered($username)
+    public function count_filtered()
     {
-        $this->_get_datatables_query($username);
+        $this->db->from($this->table);
         $query = $this->db->get();
         return $query->num_rows();
     }

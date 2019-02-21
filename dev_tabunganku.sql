@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2019 at 03:44 AM
+-- Generation Time: Feb 21, 2019 at 09:19 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -43,7 +43,7 @@ CREATE TABLE `table_celengan` (
 INSERT INTO `table_celengan` (`id`, `username`, `nama_celengan`, `deskripsi`, `jumlah_uang`) VALUES
 (2, 'mumaraziz2014@gmail.com', 'ASFA', 'ASF', '0'),
 (3, 'mumaraziz2014@gmail.com', 'asfa', 'asfsaf', '0'),
-(4, 'Uni', 'as', 'saf', '6001000');
+(4, 'Uni', 'Celengan Pertama Uni', 'Tabungan Untuk Nikah', '6051000');
 
 -- --------------------------------------------------------
 
@@ -60,6 +60,13 @@ CREATE TABLE `table_keinginan` (
   `deskripsi` text NOT NULL,
   `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_keinginan`
+--
+
+INSERT INTO `table_keinginan` (`id`, `username`, `keinginan`, `deadline`, `jumlah_uang`, `deskripsi`, `photo`) VALUES
+(1, 'Uni', 'Menikah', '2019-11-05', '15000000', '', '');
 
 -- --------------------------------------------------------
 
@@ -83,7 +90,8 @@ INSERT INTO `table_nabung` (`id`, `tanggal_menabung`, `jumlah_nabung`, `catatan`
 (34, '2019-02-20 15:45:37', '500', 'Tai', 'Uni'),
 (35, '2019-02-20 15:45:50', '500', 'lagi', 'Uni'),
 (36, '2019-02-20 15:50:52', '1000000', 'asfasf', 'Uni'),
-(37, '2019-02-20 16:32:56', '5000000', 'sadfasdf', 'Uni');
+(37, '2019-02-20 16:32:56', '5000000', 'sadfasdf', 'Uni'),
+(38, '2019-02-21 06:44:36', '50000', 'lagi', 'Uni');
 
 -- --------------------------------------------------------
 
@@ -101,7 +109,7 @@ CREATE TABLE `table_simpanan` (
 --
 
 INSERT INTO `table_simpanan` (`username`, `jumlah_tabungan`) VALUES
-('Uni', '6001000');
+('Uni', '6051000');
 
 -- --------------------------------------------------------
 
@@ -175,13 +183,13 @@ ALTER TABLE `table_celengan`
 -- AUTO_INCREMENT for table `table_keinginan`
 --
 ALTER TABLE `table_keinginan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `table_nabung`
 --
 ALTER TABLE `table_nabung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -150,10 +150,10 @@ class Home extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$list = $this->celeng->get_datatables($username);
 		$data = array();
-		$no = $_POST['start'];
+		$no = 1;
 		foreach ($list as $nabung) {
 			$row = array();
-			$row[] = $no;
+			$row[] = $no.'.';
 			$row[] = $nabung->tanggal_menabung;
 			$row[] = $nabung->jumlah_nabung;
 			$row[] = $nabung->catatan;
@@ -166,7 +166,7 @@ class Home extends CI_Controller {
 		$output = array(
 						"draw" => $_POST['draw'],
 						"recordsTotal" => $this->celeng->count_all($username),
-						"recordsFiltered" => $this->celeng->count_filtered($username),
+						"recordsFiltered" => $this->celeng->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format

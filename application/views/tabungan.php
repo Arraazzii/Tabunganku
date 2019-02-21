@@ -8,49 +8,6 @@
   </div><br>
   <div class="row">
     <div class="col-sm-12">
-  	  <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Saving History</h4>
-        </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table tablesorter" id="">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>
-                      Time
-                    </th>
-                    <th>
-                      Amount
-                    </th>
-                    <th>
-                      Note
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($history as $q) { ?>
-                  <tr>
-                	  <td>
-                	    <?= $q->tanggal_menabung ?>
-                	  </td>
-                	  <td>
-                	 	  <?= $q->jumlah_nabung ?>
-                	  </td>
-                    <td>
-                      <?= $q->catatan ?>
-                    </td>
-                  </tr> 
-                <?php } ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Saving History</h4>
@@ -149,6 +106,10 @@ $(document).ready(function() {
         "columnDefs": [
         { 
             "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+        },
+        { 
+            "targets": [ 3 ], //first column / numbering column
             "orderable": false, //set not orderable
         },
         ],
