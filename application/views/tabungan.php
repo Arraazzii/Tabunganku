@@ -29,11 +29,11 @@
                     <th>
                       Note
                     </th>
+                    <th>
+                      Action
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
-                
-                </tbody>
               </table>
             </div>
           </div>
@@ -82,6 +82,41 @@
   </div>
 </div>
 
+<!-- Modal Hapus -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="hapus-data" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <div class="panel-title">
+                    <h4>Hapus Data Menabung</h4>
+                  </div>
+                  <button aria-hidden="true" data-dismiss="modal" class="close right" type="button">×</button>
+                </div>
+                <form class="form-horizontal" action="<?php echo base_url();?>Home/hapus_Tabungan" method="post" enctype="multipart/form-data" role="form"> 
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="id">
+                        <div class="form-group">
+                          <label style="color: black;">Jumlah Uang</label><br>
+                          <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Uang" autocomplete="off" id="jumlah" readonly="">
+                        </div>
+                        <div class="form-group">
+                          <label style="color: black;">Tanggal Menabung</label><br>
+                          <input type="text" name="tanggal" class="form-control" placeholder="Jumlah Uang" autocomplete="off" id="tanggal" readonly="">
+                        </div>
+                        <div class="form-group">
+                          <label style="color: black;">Catatan Menabung</label><br>
+                          <input type="text" name="catatan" class="form-control" placeholder="Jumlah Uang" autocomplete="off" id="catatan" readonly="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info" type="submit"> Ya&nbsp;</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 <script type="text/javascript">
 
@@ -114,6 +149,10 @@ $(document).ready(function() {
         },
         ],
 
+
+"language": {                
+            "infoFiltered": ""
+        }
     });
 
     $('#btn-filter').click(function(){ //button filter event click
@@ -127,3 +166,33 @@ $(document).ready(function() {
 });
 
 </script>
+ <script>
+    $(document).ready(function() {
+        // Untuk sunting
+        $('#edit-data').on('show.bs.modal', function(event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value", div.data('id'));
+            modal.find('#nama').attr("value", div.data('nama'));
+            modal.find('#kategori').attr("value", div.data('kategori'));
+            modal.find('#hargabeli').attr("value", div.data('hargabeli'));
+            modal.find('#hargajualeceran').attr("value", div.data('hargajualeceran'));
+            modal.find('#hargajualgrosir').attr("value", div.data('hargajualgrosir'));
+            modal.find('#satuan').attr("value", div.data('satuan'));
+            modal.find('#jumlah').attr("value", div.data('jumlah'));
+        });
+
+        $('#hapus-data').on('show.bs.modal', function(event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id').attr("value", div.data('id'));
+            modal.find('#jumlah').attr("value", div.data('jumlah'));
+            modal.find('#tanggal').attr("value", div.data('tanggal'));
+            modal.find('#catatan').attr("value", div.data('catatan'));
+        });
+    });
+    </script>

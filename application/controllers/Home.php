@@ -157,6 +157,24 @@ class Home extends CI_Controller {
 			$row[] = $nabung->tanggal_menabung;
 			$row[] = 'Rp. '.$nabung->jumlah_nabung.',00';
 			$row[] = $nabung->catatan;
+			$row[] = '
+                  <a
+                href="javascript:void(0)"
+                data-id="'.$nabung->id.'"
+                data-toggle="modal" data-target="#edit-data"
+                title="Edit Data">
+                	<button class="btn btn-sm btn-info"><i class="tim-icons icon-pencil"></i></button>
+                </a>
+                <a 
+                data-id="'.$nabung->id.'"
+                data-jumlah="'.$nabung->tanggal_menabung.'"
+                data-tanggal="'.$nabung->jumlah_nabung.'"
+                data-catatan="'.$nabung->catatan.'"a
+                data-toggle="modal" data-target="#hapus-data"
+                title="Hapus Data">
+                	<button class="btn btn-sm btn-danger"><i class="tim-icons icon-trash-simple"></i></button
+                </a>
+            ';
 
 
 			$data[] = $row;
@@ -221,6 +239,25 @@ class Home extends CI_Controller {
         $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Menabung Berhasil <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       	redirect('Home/tabungan');
 	}
+
+	// Hapus Keinginan
+    public function hapus_Tabungan(){
+
+    	$id     = $this->input->post('id');
+        $this
+        ->db
+        ->where('id', $id);
+        $this
+        ->db
+        ->delete('table_nabung');
+
+            $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
+            Success! Tabungan Berhasil Di Hapus.
+            <button type="button" class="close" data-dismiss="alert">&times</button>
+                                                </div>');
+            redirect('Home/tabungan');
+
+    }
 
 	public function keinginan(){
 		if($this->session->userdata('login') != true){
@@ -361,7 +398,7 @@ class Home extends CI_Controller {
         ->delete('table_keinginan');
 
             $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Success! Kode Klui telah di hapus.
+            Success! Keinginan Berhasil Di Hapus.
             <button type="button" class="close" data-dismiss="alert">&times</button>
                                                 </div>');
             redirect('Home/keinginan');
