@@ -96,16 +96,16 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                          <label style="color: black;">Jumlah Uang</label><br>
-                          <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Uang" autocomplete="off" id="jumlah" readonly="">
+                          <label style="color: black;">Tanggal Menabung</label><br>
+                          <input type="text" name="jumlah" class="form-control" autocomplete="off" id="tanggal" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Tanggal Menabung</label><br>
-                          <input type="text" name="tanggal" class="form-control" placeholder="Jumlah Uang" autocomplete="off" id="tanggal" readonly="">
+                          <label style="color: black;">Jumlah Uang</label><br>
+                          <input type="text" name="tanggal" class="form-control" plautocomplete="off" id="jumlah" readonly="">
                         </div>
                         <div class="form-group">
                           <label style="color: black;">Catatan Menabung</label><br>
-                          <input type="text" name="catatan" class="form-control" placeholder="Jumlah Uang" autocomplete="off" id="catatan" readonly="">
+                          <input type="text" name="catatan" class="form-control" autocomplete="off" id="catatan" readonly="">
                         </div>
                     </div>
                     <div class="modal-footer">

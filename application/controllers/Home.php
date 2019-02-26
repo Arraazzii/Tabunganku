@@ -167,8 +167,8 @@ class Home extends CI_Controller {
                 </a>
                 <a 
                 data-id="'.$nabung->id.'"
-                data-jumlah="'.$nabung->tanggal_menabung.'"
-                data-tanggal="'.$nabung->jumlah_nabung.'"
+                data-jumlah="'.$nabung->jumlah_nabung.'"
+                data-tanggal="'.$nabung->tanggal_menabung.'"
                 data-catatan="'.$nabung->catatan.'"a
                 data-toggle="modal" data-target="#hapus-data"
                 title="Hapus Data">
