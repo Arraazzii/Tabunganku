@@ -161,6 +161,9 @@ class Home extends CI_Controller {
                   <a
                 href="javascript:void(0)"
                 data-id="'.$nabung->id.'"
+                data-jumlah="'.$nabung->jumlah_nabung.'"
+                data-tanggal="'.$nabung->tanggal_menabung.'"
+                data-catatan="'.$nabung->catatan.'"
                 data-toggle="modal" data-target="#edit-data"
                 title="Edit Data">
                 	<button class="btn btn-sm btn-info"><i class="tim-icons icon-pencil"></i></button>
@@ -208,6 +211,7 @@ class Home extends CI_Controller {
 	    $otherdata = array(
 	      'tanggal_menabung' => $timestamp,
 	      'jumlah_nabung' => $jumlah_uang,
+	      'celengan' => $celengan,
 	      'catatan' => $deskripsi,
 	      'username' => $username
 	  	);
@@ -258,6 +262,37 @@ class Home extends CI_Controller {
             redirect('Home/tabungan');
 
     }
+
+    // Update
+	public function edit_Tabungan()
+	{
+		$id 			= $this->input->post('id');
+		$jumlah 		= $this->input->post('jumlah');
+	    $tanggal 	 	= $this->input->post('tanggal');
+	    $catatan 		= $this->input->post('catatan');
+
+		$data = array(
+
+			'jumlah_nabung' 	=> $jumlah,
+			// 'tanggal_menabung' 	=> $tanggal,
+			'catatan' 			=> $catatan
+			
+		);
+
+        $this
+        ->db
+        ->where('id', $id);
+        $this
+        ->db
+        ->update('table_nabung', $data);
+
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! Tabungan Berhasil Di Ubah.
+			<button type="button" class="close" data-dismiss="alert">&times</button>
+			                                    </div>');
+
+		//redirect
+		redirect('Home/tabungan');
+	}
 
 	public function keinginan(){
 		if($this->session->userdata('login') != true){
