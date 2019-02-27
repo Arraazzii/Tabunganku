@@ -13,7 +13,7 @@
           <div class="card-img-overlay">
             <h5 class="card-title text-white">
               <span>
-                <?= $q->nama_celengan; ?> (<?= $q->jumlah_uang; ?>)
+                <?= $q->nama_celengan; ?> (<?= number_format($q->jumlah_uang, 0, ".", "."); ?>)
               </span>
               <a href="<?php echo base_url();?>Home/hapus_celengan/<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
               <a href=""  data-toggle="modal" data-target="#modalEditCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil"></i></a>

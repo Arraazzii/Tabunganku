@@ -155,7 +155,7 @@ class Home extends CI_Controller {
 			$row = array();
 			$row[] = $no.'.';
 			$row[] = $nabung->tanggal_menabung;
-			$row[] = 'Rp. '.$nabung->jumlah_nabung.',00';
+			$row[] = 'Rp. '.number_format($nabung->jumlah_nabung, 0, ".", ".").',00';
 			$row[] = $nabung->catatan;
 			$row[] = '
                   <a

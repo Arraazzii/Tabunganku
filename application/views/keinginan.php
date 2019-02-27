@@ -13,7 +13,7 @@
           <div class="card-img-overlay">
             <h5 class="card-title text-white"><?= $q->keinginan; ?></h5>
             <!-- <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little   bit   longer.</p> -->
-            <p class="card-text text-white"><?= $q->deadline; ?> (<?= $q->jumlah_uang; ?>)</p>
+            <p class="card-text text-white"><?= $q->deadline; ?> (<?= number_format($q->jumlah_uang, 0, ".", "."); ?>)</p>
           </div>
       </div>
     </div>
