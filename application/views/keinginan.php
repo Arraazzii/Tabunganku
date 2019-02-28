@@ -12,7 +12,8 @@
         <img class="card-img" src="../assets/img/1280x720.jpg" alt="Card image">
           <div class="card-img-overlay">
             <h5 class="card-title text-white"><?= $q->keinginan; ?></h5>
-            <!-- <p class="card-text text-white">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little   bit   longer.</p> -->
+            <a href="" data-toggle="modal" data-target="#modalHapusKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
+              <a href="" data-toggle="modal" data-target="#modalEditKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil"></i></a>
             <p class="card-text text-white"><?= $q->deadline; ?> (<?= number_format($q->jumlah_uang, 0, ".", "."); ?>)</p>
           </div>
       </div>
@@ -84,8 +85,33 @@ foreach ($wish as $row) {
         </div>
         <div class="modal-footer">
           <button class="btn btn-info animation-on-hover" type="submit">
-            Tambah
+            Simpan
           </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<?php } ?>
+
+<?php 
+foreach ($wish as $row) {
+?>
+
+<div class="modal fade" id="modalHapusKeinginan<?= $row->id; ?>" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true" style="position: absolute;top:100px">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="<?php echo base_url();?>Home/hapus_Keinginan" method="POST">
+        <div class="modal-body">
+          <input type="hidden" name="id" value="<?= $row->id; ?>" class="form-control" placeholder="Keinginan" autocomplete="off">
+          <h4>Hapus Keinginan ?</h4>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-info animation-on-hover" type="submit">
+            Ya
+          </button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal"> Tidak</button>
         </div>
       </form>
     </div>

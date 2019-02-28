@@ -423,11 +423,11 @@ class Home extends CI_Controller {
 
 	// Hapus Keinginan
     public function hapus_Keinginan(){
-        $kode = $this->uri->segment(3);
+        $id = $this->input->post('id');
 
         $this
         ->db
-        ->where('id', $kode);
+        ->where('id', $id);
         $this
         ->db
         ->delete('table_keinginan');
@@ -526,11 +526,11 @@ class Home extends CI_Controller {
 
 	// Hapus Celengan
     public function hapus_celengan(){
-        $kode = $this->uri->segment(3);
+        $id = $this->input->post('id');
 
         $this
         ->db
-        ->where('id', $kode);
+        ->where('id', $id);
         $this
         ->db
         ->delete('table_celengan');

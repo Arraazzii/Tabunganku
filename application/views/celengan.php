@@ -15,7 +15,7 @@
               <span>
                 <?= $q->nama_celengan; ?> (<?= number_format($q->jumlah_uang, 0, ".", "."); ?>)
               </span>
-              <a href="<?php echo base_url();?>Home/hapus_celengan/<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
+              <a href=""  data-toggle="modal" data-target="#modalHapusCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
               <a href=""  data-toggle="modal" data-target="#modalEditCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil"></i></a>
             </h5>
             <p class="card-text text-white"><?= $q->deskripsi; ?></p>
@@ -83,6 +83,32 @@ foreach ($celeng as $row) {
           <button class="btn btn-info animation-on-hover" type="submit">
             Tambah
           </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<?php } ?>
+
+<?php 
+foreach ($celeng as $row) {
+?>
+
+<div class="modal fade" id="modalHapusCelengan<?= $row->id; ?>" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true" style="position: absolute;top:100px">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="<?php echo base_url();?>Home/hapus_celengan" method="POST">
+        <div class="modal-body">
+          <div class="modal-body">
+          <input type="hidden" name="id" value="<?= $row->id; ?>" class="form-control" placeholder="Keinginan" autocomplete="off">
+          <h4>Hapus Celengan ?</h4>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-info animation-on-hover" type="submit">
+            Ya
+          </button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal"> Tidak</button>
         </div>
       </form>
     </div>
