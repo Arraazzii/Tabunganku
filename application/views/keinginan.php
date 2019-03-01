@@ -11,9 +11,13 @@
       <div class="card text-white">
         <img class="card-img" src="../assets/img/1280x720.jpg" alt="Card image">
           <div class="card-img-overlay">
-            <h5 class="card-title text-white"><?= $q->keinginan; ?></h5>
-            <a href="" data-toggle="modal" data-target="#modalHapusKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
+            <h5 class="card-title text-white">
+              <span>
+                <?= $q->keinginan; ?>
+              </span>
+              <a href="" data-toggle="modal" data-target="#modalHapusKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
               <a href="" data-toggle="modal" data-target="#modalEditKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil"></i></a>
+            </h5>
             <p class="card-text text-white"><?= $q->deadline; ?> (<?= number_format($q->jumlah_uang, 0, ".", "."); ?>)</p>
           </div>
       </div>
