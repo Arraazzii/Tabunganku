@@ -38,6 +38,14 @@ class Model_Celeng extends CI_Model {
         return $query->row();
     }
 
+    public function check_user_result($username){
+        $query = $this->db->select("*")
+                 ->from('table_simpanan')
+                 ->where('username', $username)
+                 ->get();
+        return $query->result();
+    }
+
     public function check_celengan($username){
         $query = $this->db->select("*")
                  ->from('table_celengan')
@@ -57,11 +65,23 @@ class Model_Celeng extends CI_Model {
     }
 
     // Tampil Celengan
+    public function tampil_semua_celengan($username)
+    {
+        $query = $this->db->select("*")
+                 ->from('table_celengan')
+                 ->where('username', $username)
+                 ->order_by('id', 'ASC')
+                 ->get();
+        return $query->result();
+    }
+
+    // Tampil Celengan
     public function tampil_celengan($username)
     {
     	$query = $this->db->select("*")
 				 ->from('table_celengan')
 				 ->where('username', $username)
+                 ->where('status', '0')
 				 ->order_by('id', 'ASC')
 				 ->get();
 		return $query->result();
@@ -92,6 +112,8 @@ class Model_Celeng extends CI_Model {
     {
         $this->db->from($this->table);
         $this->db->where('table_nabung.username=', $username);
+        $this->db->order_by('id', 'DESC');
+
         $i = 0;
     
         foreach ($this->column_search as $item) // loop column 
@@ -158,5 +180,37 @@ class Model_Celeng extends CI_Model {
         }else{
             return false;
         }
+    }
+
+    public function grafik_debit($username, $bulan){
+        $query = $this->db->query("SELECT DATE(tanggal_menabung) AS waktu,SUM(jumlah_nabung) AS uang FROM table_nabung WHERE username = '$username' AND status = '0' AND MONTH(tanggal_menabung) = '$bulan' GROUP BY waktu");
+          
+        if($query->num_rows() > 0){
+            foreach($query->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
+    }
+
+    public function grafik_kredit($username, $bulan){
+        $query = $this->db->query("SELECT DATE(tanggal_menabung) AS waktu,SUM(jumlah_nabung) AS uang FROM table_nabung WHERE username = '$username' AND status = '1' AND MONTH(tanggal_menabung) = '$bulan' GROUP BY waktu");
+          
+        if($query->num_rows() > 0){
+            foreach($query->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
+    }
+
+    public function debit_total($username, $bulan){
+        $query = $this->db->query("SELECT SUM(jumlah_nabung) as uang FROM table_nabung WHERE username = '$username' AND status = '0' AND MONTH(tanggal_menabung) = '$bulan'");
+        return $query->result();
+    }
+
+    public function kredit_total($username, $bulan){
+        $query = $this->db->query("SELECT SUM(jumlah_nabung) as uang FROM table_nabung WHERE username = '$username' AND status = '1' AND MONTH(tanggal_menabung) = '$bulan'");
+        return $query->result();
     }
 }

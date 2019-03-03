@@ -3,7 +3,7 @@
         <nav class="float-left">
           <ul>
               <li>
-                  <a href="#">
+                  <a href="#" class="text-info">
                       Creative Tim
                   </a>
               </li>
@@ -14,7 +14,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script>, made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+            <a href="https://www.creative-tim.com" target="_blank" class="text-info">Creative Tim</a>
         </div>
 
          <!-- your footer here -->
@@ -24,14 +24,14 @@
         <div class="container-fluid">
                 
                 <div class="copyright float-center">
-                  <a href="#">
+                  <a href="#" class="text-info">
                       Creative Tim
                   </a>
                         &copy;
                         <script>
                         document.write(new Date().getFullYear())
                         </script><br> made with <i class="tim-icons icon-heart-2"></i> by
-                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                        <a href="https://www.creative-tim.com" target="_blank" class="text-info">Creative Tim</a>
                 </div>
                 <!-- your footer here -->
         </div>

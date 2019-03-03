@@ -57,15 +57,27 @@ class Home extends CI_Controller {
 	}
 
 	public function dashboard(){
+		error_reporting(0);
 		if($this->session->userdata('login') != true){
 			redirect('Home');
 		}
 
-		$username = $this->session->userdata('username');
-		$user = $this->person->readby($username);
+		$username 	= $this->session->userdata('username');
+		$bulan 		= date("m");
+		$user 		= $this->person->readby($username);
+		$celeng 	= $this->celeng->check_user_result($username);
+		$debit  	= $this->celeng->grafik_debit($username, $bulan);
+		$kredit  	= $this->celeng->grafik_kredit($username, $bulan);
+		$debittotal = $this->celeng->debit_total($username, $bulan);
+		$kreditotal = $this->celeng->kredit_total($username, $bulan);
 
 		$newdata = array(
 			'user' => $user,
+			'celengan' => $celeng,
+			'debit' => $debit,
+			'kredit' => $kredit,
+			'dt' => $debittotal,
+			'kt' => $kreditotal
 		);
 
 
@@ -460,7 +472,7 @@ class Home extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$contents['user_profile'] = $this->session->userdata('user_profile');
 		$user = $this->person->readby($username);
-		$celeng = $this->celeng->tampil_celengan($username);
+		$celeng = $this->celeng->tampil_semua_celengan($username);
 
 		$newdata = array(
 			'profile' => $contents['user_profile'],
