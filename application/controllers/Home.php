@@ -114,17 +114,19 @@ class Home extends CI_Controller {
 			redirect('Home');
 		}		
 
-		$username = $this->session->userdata('username');
+		$username 	= $this->session->userdata('username');
 		$contents['user_profile'] = $this->session->userdata('user_profile');
-		$user 	= $this->person->readby($username);
-		$celeng = $this->celeng->tampil_celengan($username);
-		$history = $this->celeng->tampil_history($username);
+		$user 		= $this->person->readby($username);
+		$celeng 	= $this->celeng->tampil_celengan($username);
+		$celeng1 	= $this->celeng->check_celengan($username);
+		$history 	= $this->celeng->tampil_history($username);
 
 		$newdata = array(
-			'profile' => $contents['user_profile'],
-			'user' => $user,
-			'celeng' => $celeng,
-			'history' => $history
+			'profile'		=> $contents['user_profile'],
+			'user' 			=> $user,
+			'celeng' 		=> $celeng,
+			'history' 		=> $history,
+			'checkcelengan' => $celeng1
 		);
 		
 		$path = "";
@@ -157,6 +159,12 @@ class Home extends CI_Controller {
 			$row[] = $nabung->tanggal_menabung;
 			$row[] = 'Rp. '.number_format($nabung->jumlah_nabung, 0, ".", ".").',00';
 			$row[] = $nabung->catatan;
+			if ($nabung->status == 0) {
+				$status = 'Debit';
+			} else {
+				$status = 'Kredit';
+			}
+			$row[] = $status;
 			$row[] = '
                   <a
                 href="javascript:void(0)"
@@ -209,11 +217,12 @@ class Home extends CI_Controller {
 	  	);
 
 	    $otherdata = array(
-	      'tanggal_menabung' => $timestamp,
-	      'jumlah_nabung' => $jumlah_uang,
-	      'celengan' => $celengan,
-	      'catatan' => $deskripsi,
-	      'username' => $username
+	      'tanggal_menabung' 	=> $timestamp,
+	      'jumlah_nabung' 		=> $jumlah_uang,
+	      'celengan' 			=> $celengan,
+	      'catatan' 			=> $deskripsi,
+	      'username' 			=> $username,
+	      'status' 				=> '0'
 	  	);
 
 	  	$this->celeng->history_nabung($username, $otherdata);
@@ -369,6 +378,7 @@ class Home extends CI_Controller {
 		$sess 			= $this->input->post('username');
 		$keinginan 		= $this->input->post('keinginan');
 	    $batas_waktu 	= $this->input->post('batas_waktu');
+	    $desc			= $this->input->post('desc');
 	    $jumlah_uang	= $this->input->post('jumlah_uang');
 
 		$data = array(
@@ -376,7 +386,8 @@ class Home extends CI_Controller {
 			'username'		=> $sess,
 			'keinginan' 	=> $keinginan,
 			'deadline' 		=> $batas_waktu,
-			'jumlah_uang' 	=> $jumlah_uang
+			'jumlah_uang' 	=> $jumlah_uang,
+			'deskripsi' 	=> $desc
 			
 		);
 
@@ -473,16 +484,16 @@ class Home extends CI_Controller {
 	// Tambah Celengan
 	public function tambahcelengan()
 	{
-		$sess 			= $this->input->post('username');
+		$sess 			= $this->session->userdata('username');
 		$namacelengan	= $this->input->post('namacelengan');
 	    $deskripsi	 	= $this->input->post('deskripsi');
 
 		$data = array(
-
 			'username'		=> $sess,
 			'nama_celengan' => $namacelengan,
 			'deskripsi'		=> $deskripsi,
-			'jumlah_uang' 	=> '0'
+			'jumlah_uang' 	=> '0',
+			'status' 		=> '0'
 		);
 
 		$this->celeng->simpan_celengan($data);
@@ -552,12 +563,23 @@ class Home extends CI_Controller {
 		$saatini 	= $box->jumlah_tabungan;
 		$duitceleng = $box1->jumlah_uang;
 		$hasil 		= $saatini - $duitceleng;
+		$date 		= date("Y-m-d H:i:s");
+		$desc 	  	= $this->input->post('catatan');
 
 
 		$data = array(
-			'jumlah_uang' => '0',
 			'status'	  => '1'
 		);
+
+		$otherdata = array(
+			'tanggal_menabung' 	=> $date,
+			'jumlah_nabung' 	=> $duitceleng,
+			'catatan'			=> $desc,
+			'status' 			=> '1',
+			'username' 			=> $username
+		);
+
+		$this->celeng->history_nabung($username, $otherdata);
 
         $this
         ->db

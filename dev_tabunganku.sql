@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2019 at 09:19 AM
+-- Generation Time: Mar 03, 2019 at 06:06 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -33,17 +33,17 @@ CREATE TABLE `table_celengan` (
   `username` varchar(30) NOT NULL,
   `nama_celengan` varchar(30) NOT NULL,
   `deskripsi` text NOT NULL,
-  `jumlah_uang` varchar(50) NOT NULL
+  `jumlah_uang` varchar(50) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `table_celengan`
 --
 
-INSERT INTO `table_celengan` (`id`, `username`, `nama_celengan`, `deskripsi`, `jumlah_uang`) VALUES
-(2, 'mumaraziz2014@gmail.com', 'ASFA', 'ASF', '0'),
-(3, 'mumaraziz2014@gmail.com', 'asfa', 'asfsaf', '0'),
-(4, 'Uni', 'Celengan Pertama Uni', 'Tabungan Untuk Nikah', '6051000');
+INSERT INTO `table_celengan` (`id`, `username`, `nama_celengan`, `deskripsi`, `jumlah_uang`, `status`) VALUES
+(7, 'Uni', 'Celengan Uni', 'Punya Uni\r\n', '5000000', 1),
+(8, 'Umar', 'Tabungan Umang', 'Punya Umang', '10000000', 1);
 
 -- --------------------------------------------------------
 
@@ -61,13 +61,6 @@ CREATE TABLE `table_keinginan` (
   `photo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `table_keinginan`
---
-
-INSERT INTO `table_keinginan` (`id`, `username`, `keinginan`, `deadline`, `jumlah_uang`, `deskripsi`, `photo`) VALUES
-(1, 'Uni', 'Menikah', '2019-11-05', '15000000', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -76,9 +69,11 @@ INSERT INTO `table_keinginan` (`id`, `username`, `keinginan`, `deadline`, `jumla
 
 CREATE TABLE `table_nabung` (
   `id` int(11) NOT NULL,
-  `tanggal_menabung` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal_menabung` datetime NOT NULL,
   `jumlah_nabung` varchar(30) NOT NULL,
   `catatan` text NOT NULL,
+  `celengan` varchar(30) NOT NULL,
+  `status` int(11) NOT NULL,
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,12 +81,22 @@ CREATE TABLE `table_nabung` (
 -- Dumping data for table `table_nabung`
 --
 
-INSERT INTO `table_nabung` (`id`, `tanggal_menabung`, `jumlah_nabung`, `catatan`, `username`) VALUES
-(34, '2019-02-20 15:45:37', '500', 'Tai', 'Uni'),
-(35, '2019-02-20 15:45:50', '500', 'lagi', 'Uni'),
-(36, '2019-02-20 15:50:52', '1000000', 'asfasf', 'Uni'),
-(37, '2019-02-20 16:32:56', '5000000', 'sadfasdf', 'Uni'),
-(38, '2019-02-21 06:44:36', '50000', 'lagi', 'Uni');
+INSERT INTO `table_nabung` (`id`, `tanggal_menabung`, `jumlah_nabung`, `catatan`, `celengan`, `status`, `username`) VALUES
+(43, '2019-03-04 00:02:47', '5000000', 'Nabung Pertama', '7', 0, 'Uni'),
+(44, '2019-03-04 00:03:10', '10000000', 'Nabung Pertama', '8', 0, 'Umar'),
+(45, '2019-03-04 00:04:33', '5000000', 'Done', '', 1, 'Uni'),
+(46, '2019-03-04 00:04:44', '10000000', 'Done', '', 1, 'Umar');
+
+--
+-- Triggers `table_nabung`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_nabung` AFTER DELETE ON `table_nabung` FOR EACH ROW BEGIN
+	UPDATE table_celengan SET jumlah_uang = jumlah_uang-OLD.jumlah_nabung WHERE username = OLD.username AND nama_celengan = OLD.celengan;
+    UPDATE table_simpanan SET jumlah_tabungan = jumlah_tabungan-OLD.jumlah_nabung WHERE username = OLD.username;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -109,7 +114,8 @@ CREATE TABLE `table_simpanan` (
 --
 
 INSERT INTO `table_simpanan` (`username`, `jumlah_tabungan`) VALUES
-('Uni', '6051000');
+('Umar', '0'),
+('Uni', '0');
 
 -- --------------------------------------------------------
 
@@ -133,7 +139,8 @@ CREATE TABLE `table_user` (
 --
 
 INSERT INTO `table_user` (`id`, `username`, `password`, `nama_depan`, `nama_belakang`, `tanggal_daftar`, `photo`, `status`) VALUES
-('3165748111392613330', 'Uni', 'e52805d8344b67b9b3554d45f1c8958f', 'Seruni', 'Sandya', '2019-02-13 05:57:45', 'default-avatar.png', '1');
+('3165748111392613330', 'Uni', 'e52805d8344b67b9b3554d45f1c8958f', 'Seruni', 'Sandya', '2019-02-13 05:57:45', 'default-avatar.png', '1'),
+('7214025525951266705', 'Umar', '92deb3f274aaee236194c05729bfa443', 'Guest', '36505127', '2019-03-03 16:50:48', 'default-avatar.png', '1');
 
 --
 -- Indexes for dumped tables
@@ -177,19 +184,19 @@ ALTER TABLE `table_user`
 -- AUTO_INCREMENT for table `table_celengan`
 --
 ALTER TABLE `table_celengan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `table_keinginan`
 --
 ALTER TABLE `table_keinginan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `table_nabung`
 --
 ALTER TABLE `table_nabung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

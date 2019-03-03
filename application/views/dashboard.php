@@ -1,7 +1,10 @@
 <?php if ($this->session->userdata('type') != 'google' && $user->status == '0') { ?>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#myModal").modal('show');
+			$("#myModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
 		});
 	</script>
 <?php } ?>
@@ -12,7 +15,7 @@
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <h4 class="modal-title">Change Password </h4>
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
 	            </div>
 	            <div class="modal-body">
 	                <form action="<?php echo base_url();?>Home/change_pass" method="POST">

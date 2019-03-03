@@ -2,7 +2,7 @@
   <?php echo $this->session->flashdata('notif') ?>
   <div class="row">
     <div class="col-sm-12">
-      <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalCelengan">Tambah</a>
+      <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalCelengan">Create New</a>
     </div>
   </div>
   <div class="row" style="margin-top: 20px">
@@ -25,7 +25,7 @@
               <a href=""  data-toggle="modal" data-target="#modalTebokCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
               <a href=""  data-toggle="modal" data-target="#modalEditCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil" title="Edit MoneyBox"></i></a>
             <?php } else { ?>
-              <p class="card-text text-white pull-right">Sudah Ditebok</p>
+              <p class="card-text text-white pull-right">Already Broke</p>
             <?php } ?>
           </div>
         </div>
@@ -41,7 +41,7 @@
       <form action="<?php echo base_url();?>Home/tambahcelengan" method="POST">
         <div class="modal-body">
           <div class="form-group">
-            <label style="color: black;">Nama Celengan</label><br>
+            <label style="color: black;">MoneyBox Name</label><br>
             <input type="text" name="namacelengan" class="form-control" placeholder="Celengan" autocomplete="off">
             <?php if ($this->session->userdata('type') == 'google') { ?>
               <input type="hidden" name="username" value="<?= $profile['email'];?>" class="form-control" autocomplete="off">
@@ -50,13 +50,13 @@
             <?php } ?>
           </div>
           <div class="form-group">
-            <label style="color: black;">Deskripsi</label><br>
+            <label style="color: black;">Description</label><br>
             <textarea name="deskripsi" class="form-control"></textarea>
           </div>
         </div>
         <div class="modal-footer">
           <button style="width: 100%" class="btn btn-info animation-on-hover" type="submit">
-            Tambah
+            Save
           </button>
         </div>
       </form>
@@ -74,7 +74,7 @@ foreach ($celeng as $row) {
       <form action="<?php echo base_url();?>Home/updatecelengan" method="POST">
         <div class="modal-body">
           <div class="form-group">
-            <label style="color: black;">Nama Celengan</label><br>
+            <label style="color: black;">MoneyBox Name</label><br>
             <input type="text" name="namacelengan" value="<?= $row->nama_celengan; ?>" class="form-control" placeholder="Celengan" autocomplete="off">
             <input type="hidden" name="id" value="<?= $row->id; ?>" class="form-control" autocomplete="off">
             <?php if ($this->session->userdata('type') == 'google') { ?>
@@ -84,7 +84,7 @@ foreach ($celeng as $row) {
             <?php } ?>
           </div>
           <div class="form-group">
-            <label style="color: black;">Deskripsi</label><br>
+            <label style="color: black;">Description</label><br>
             <textarea name="deskripsi" class="form-control"><?= $row->deskripsi; ?></textarea>
           </div>
         </div>
@@ -109,28 +109,28 @@ foreach ($celeng as $row) {
             <div class="modal-content">
                 <div class="modal-header">
                   <div class="panel-title">
-                    <h4>Hapus Celengan</h4>
+                    <h4>Delete MoneyBox</h4>
                   </div>
                   <button aria-hidden="true" data-dismiss="modal" class="close right" type="button">×</button>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url();?>Home/hapus_celengan" method="post" enctype="multipart/form-data" role="form"> 
                     <div class="modal-body">
                         <div class="form-group">
-                          <label style="color: black;">Nama Celengan</label><br>
+                          <label style="color: black;">MoneyBox Name</label><br>
                           <input type="text" name="jumlah" class="form-control" value="<?= $row->nama_celengan ?>" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Jumlah Uang</label><br>
+                          <label style="color: black;">Amount Of Money</label><br>
                           <input type="text" name="tanggal" class="form-control" value="Rp. <?= number_format($row->jumlah_uang, 0, ".", "."); ?>,00" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Deskripsi</label><br>
+                          <label style="color: black;">Description</label><br>
                           <input type="text" name="catatan" class="form-control" value="<?= $row->deskripsi ?>" readonly="">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-info" type="submit"> Ya&nbsp;</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                        <button class="btn btn-info" type="submit"> Go on&nbsp;</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Cancel</button>
                     </div>
                 </form>
             </div>
@@ -148,7 +148,7 @@ foreach ($celeng as $row) {
             <div class="modal-content">
                 <div class="modal-header">
                   <div class="panel-title">
-                    <h4>Tebok Celengan</h4>
+                    <h4>Broke MoneyBox</h4>
                   </div>
                   <button aria-hidden="true" data-dismiss="modal" class="close right" type="button">×</button>
                 </div>
@@ -156,21 +156,25 @@ foreach ($celeng as $row) {
                     <div class="modal-body">
                         <input type="hidden" name="id" value="<?= $row->id; ?>" class="form-control" autocomplete="off">
                         <div class="form-group">
-                          <label style="color: black;">Nama Celengan</label><br>
+                          <label style="color: black;">MoneyBox Name</label><br>
                           <input type="text" name="nama" class="form-control" value="<?= $row->nama_celengan ?>" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Jumlah Uang</label><br>
+                          <label style="color: black;">Amount Of Money</label><br>
                           <input type="text" name="jumlah_uang" class="form-control" value="Rp. <?= number_format($row->jumlah_uang, 0, ".", "."); ?>,00" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Deskripsi</label><br>
+                          <label style="color: black;">Description</label><br>
                           <input type="text" name="deskripsi" class="form-control" value="<?= $row->deskripsi ?>" readonly="">
+                        </div>
+                        <div class="form-group">
+                          <label style="color: black;">Note</label><br>
+                          <textarea  name="catatan" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-info" type="submit"> Ya&nbsp;</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                        <button class="btn btn-info" type="submit"> Go on&nbsp;</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Cancel</button>
                     </div>
                 </form>
             </div>

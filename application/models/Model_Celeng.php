@@ -38,6 +38,15 @@ class Model_Celeng extends CI_Model {
         return $query->row();
     }
 
+    public function check_celengan($username){
+        $query = $this->db->select("*")
+                 ->from('table_celengan')
+                 ->where('username', $username)
+                 ->where('status', '0')
+                 ->get();
+        return $query->row();
+    }
+
     // Select Celengan
     public function select_celengan($username){
         $query = $this->db->select("*")

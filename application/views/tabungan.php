@@ -1,9 +1,18 @@
-
+<?php if ($checkcelengan < '1') { ?>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#myModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+  </script>
+<?php } ?>
 <div class="content">
   <?php echo $this->session->flashdata('notif') ?>
   <div class="row">
     <div class="col-sm-12">
-      <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalTabung">Tambah</a>
+      <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalTabung">Create New</a>
     </div>
   </div><br>
   <div class="row">
@@ -15,7 +24,7 @@
           <div class="card-body">
             <div class="table-responsive">
               <table id="table-1" class="table display" cellspacing="0" width="100%">
-                <thead class="text-primary">
+                <thead class="">
                   <tr>
                     <th>
                       No
@@ -28,6 +37,9 @@
                     </th>
                     <th>
                       Note
+                    </th>
+                    <th>
+                      Status
                     </th>
                     <th>
                       Action
@@ -54,13 +66,13 @@
               <input type="hidden" name="username" value="<?= $user->username;?>" class="form-control" placeholder="Keinginan" autocomplete="off">
             <?php } ?>
           <div class="form-group">
-            <label style="color: black;">Jumlah Uang</label><br>
-            <input type="text" name="jumlah_uang" class="form-control" placeholder="Jumlah Uang" autocomplete="off">
+            <label style="color: black;">Amount of Money</label><br>
+            <input type="text" name="jumlah_uang" class="form-control" placeholder="Amount of Money" autocomplete="off">
           </div>
           <div class="form-group">
-            <label style="color: black;">Celengan</label><br>
+            <label style="color: black;">MoneyBox</label><br>
             <select name="celengan"  class="form-control">
-              <option value="" hidden>-Pilih Celengan-</option>
+              <option value="" hidden>-Choose MoneyBox-</option>
               <?php
               foreach ($celeng as $a) { ?>
                 <option value="<?= $a->id?>"><?= $a->nama_celengan?></option>
@@ -68,13 +80,13 @@
             </select>
           </div>
           <div class="form-group">
-            <label style="color: black;">Deskripsi</label><br>
+            <label style="color: black;">Description</label><br>
             <textarea name="deskripsi" class="form-control"></textarea>
           </div>
         </div>
         <div class="modal-footer">
           <button style="width: 100%" class="btn btn-info animation-on-hover" type="submit">
-            Tambah
+            Save
           </button>
         </div>
       </form>
@@ -88,7 +100,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                   <div class="panel-title">
-                    <h4>Hapus Data Menabung</h4>
+                    <h4>Delete Saving History ?</h4>
                   </div>
                   <button aria-hidden="true" data-dismiss="modal" class="close right" type="button">×</button>
                 </div>
@@ -96,21 +108,21 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                          <label style="color: black;">Tanggal Menabung</label><br>
+                          <label style="color: black;">Date Saving</label><br>
                           <input type="text" name="jumlah" class="form-control" autocomplete="off" id="tanggal" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Jumlah Uang</label><br>
+                          <label style="color: black;">Amount Of Money</label><br>
                           <input type="text" name="tanggal" class="form-control" plautocomplete="off" id="jumlah" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Catatan Menabung</label><br>
+                          <label style="color: black;">Saving Note</label><br>
                           <input type="text" name="catatan" class="form-control" autocomplete="off" id="catatan" readonly="">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-info" type="submit"> Ya&nbsp;</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                        <button class="btn btn-info" type="submit"> Go on&nbsp;</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Cancel</button>
                     </div>
                 </form>
             </div>
@@ -123,7 +135,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                   <div class="panel-title">
-                    <h4>Ubah Data Menabung</h4>
+                    <h4>Edit Saving History</h4>
                   </div>
                   <button aria-hidden="true" data-dismiss="modal" class="close right" type="button">×</button>
                 </div>
@@ -131,26 +143,43 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                          <label style="color: black;">Tanggal Menabung</label><br>
+                          <label style="color: black;">Date Saving</label><br>
                           <input type="text" name="tanggal" class="form-control" autocomplete="off" id="tanggal" readonly="">
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Jumlah Uang</label><br>
+                          <label style="color: black;">Amount Of Money</label><br>
                           <input type="text" name="jumlah" class="form-control" plautocomplete="off" id="jumlah" >
                         </div>
                         <div class="form-group">
-                          <label style="color: black;">Catatan Menabung</label><br>
+                          <label style="color: black;">Saving Note</label><br>
                           <input type="text" name="catatan" class="form-control" autocomplete="off" id="catatan" >
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-info" type="submit"> Ubah&nbsp;</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                        <button class="btn btn-info" type="submit"> Update&nbsp;</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <div id="myModal" class="modal fade" style="margin-top: 150px ">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Ooopss..</h4>
+                  <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+              </div>
+              <div class="modal-body">
+                  <h4>You dont have any available moneybox,<br>create a new one by clicking button below</h4>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-info" href="<?= base_url('Home/celengan'); ?>">Create</a>
+              </div>
+          </div>
+      </div>
+  </div>
 
 
 <script type="text/javascript">

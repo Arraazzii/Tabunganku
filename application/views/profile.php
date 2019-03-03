@@ -61,7 +61,7 @@
         </div>
 </div>
 <?php } else if ($this->session->userdata('type') == 'local') { ?>
-<div class="content"><?php echo $profile['name'];?>
+<div class="content">
 <?php echo $this->session->flashdata('notif') ?>
         <div class="">
                 <div class="row">
@@ -79,7 +79,7 @@
                       <h5 class="title"><?= $user->nama_depan;?> <?= $user->nama_belakang;?></h5>
                     </a>
                                                                 <p class="description">
-                                                                        ID Kamu :
+                                                                        Your ID :
                                                                         <?= $user->id;?>
                                                                 </p>
                                                         </div>
