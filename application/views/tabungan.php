@@ -63,7 +63,7 @@
               <option value="" hidden>-Pilih Celengan-</option>
               <?php
               foreach ($celeng as $a) { ?>
-                <option value="<?= $a->nama_celengan?>"><?= $a->nama_celengan?></option>
+                <option value="<?= $a->id?>"><?= $a->nama_celengan?></option>
               <?php } ?>
             </select>
           </div>

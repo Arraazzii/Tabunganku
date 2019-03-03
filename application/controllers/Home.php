@@ -543,4 +543,46 @@ class Home extends CI_Controller {
 
     }    
 
+    public function tebok_celengan()
+	{
+		$id 	  	= $this->input->post('id');
+		$username 	= $this->session->userdata('username');
+		$box1 		= $this->celeng->select_celengan($id);
+		$box 		= $this->celeng->check_user($username);
+		$saatini 	= $box->jumlah_tabungan;
+		$duitceleng = $box1->jumlah_uang;
+		$hasil 		= $saatini - $duitceleng;
+
+
+		$data = array(
+			'jumlah_uang' => '0',
+			'status'	  => '1'
+		);
+
+        $this
+        ->db
+        ->where('id', $id);
+        $this
+        ->db
+        ->update('table_celengan', $data);
+
+        $data2 = array(
+			'jumlah_tabungan' => $hasil
+		);
+
+        $this
+        ->db
+        ->where('username', $username);
+        $this
+        ->db
+        ->update('table_simpanan', $data2);
+
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! Celengan Anda Sudah Tertebok
+			<button type="button" class="close" data-dismiss="alert">&times</button>
+			                                    </div>');
+
+		//redirect
+		redirect('Home/celengan');
+	}
+
 }
