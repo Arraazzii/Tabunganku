@@ -24,11 +24,11 @@ class Login extends CI_Controller {
                     $this->session->set_userdata($newdata);
                     redirect('Home/dashboard');            
                     } else {
-                    $this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert" style="text-align: center"> Masukkan Email & Password Dengan Benar <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    $this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert" style="text-align: center"> Enter Email & Password Correctly <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     redirect('Home');
                 }
             } else {
-                $this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert" style="text-align: center"> Email atau Password yang Anda Masukkan Tidak Terdaftar <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                $this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert" style="text-align: center"> The Email Or Password You Entered Is Not Registered <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     redirect('Home');
             }
     }

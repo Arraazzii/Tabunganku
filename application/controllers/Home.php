@@ -261,7 +261,7 @@ class Home extends CI_Controller {
 	    );
 	    $this->db->where('id', $celengan);
         $this->db->update('table_celengan', $dataceleng);
-        $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Menabung Berhasil <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Savings Successfully Added <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       	redirect('Home/tabungan');
 	}
 
@@ -277,7 +277,7 @@ class Home extends CI_Controller {
         ->delete('table_nabung');
 
             $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Success! Tabungan Berhasil Di Hapus.
+            Savings Successfully Deleted.
             <button type="button" class="close" data-dismiss="alert">&times</button>
                                                 </div>');
             redirect('Home/tabungan');
@@ -307,7 +307,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_nabung', $data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! Tabungan Berhasil Di Ubah.
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! Savings Successfully Changed.
 			<button type="button" class="close" data-dismiss="alert">&times</button>
 			                                    </div>');
 
@@ -405,7 +405,7 @@ class Home extends CI_Controller {
 
 		$this->wish->simpan_Keinginan($data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Wishes Successfully Added.
 			<button type="button" class="close" data-dismiss="alert">&times</button>
 			                                    </div>');
 
@@ -436,7 +436,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_keinginan', $data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Wishes Successfully Changed.
 			<button type="button" class="close" data-dismiss="alert">&times</button>
 			                                    </div>');
 
@@ -456,7 +456,7 @@ class Home extends CI_Controller {
         ->delete('table_keinginan');
 
             $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Success! Keinginan Berhasil Di Hapus.
+            Wishes Successfully Deleted.
             <button type="button" class="close" data-dismiss="alert">&times</button>
                                                 </div>');
             redirect('Home/keinginan');
@@ -510,7 +510,7 @@ class Home extends CI_Controller {
 
 		$this->celeng->simpan_celengan($data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Money Box Successfully Added.
 			<button type="button" class="close" data-dismiss="alert">&times</button>
 			                                    </div>');
 
@@ -539,7 +539,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_celengan', $data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! data berhasil disimpan didatabase.
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Money Box Successfully Changed.
 			<button type="button" class="close" data-dismiss="alert">&times</button>
 			                                    </div>');
 
@@ -559,7 +559,7 @@ class Home extends CI_Controller {
         ->delete('table_celengan');
 
             $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Success! Celengan telah di hapus.
+            Money Box Successfully Deleted.
             <button type="button" class="close" data-dismiss="alert">&times</button>
                                                 </div>');
             redirect('Home/celengan');
@@ -611,7 +611,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_simpanan', $data2);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! Celengan Anda Sudah Tertebok
+		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Your Money Box Was Successfully Emptied
 			<button type="button" class="close" data-dismiss="alert">&times</button>
 			                                    </div>');
 
