@@ -549,7 +549,7 @@ class Home extends CI_Controller {
 
 	// Hapus Celengan
     public function hapus_celengan(){
-        $id = $this->input->post('id');
+        $id = $this->uri->segment(3);
 
         $this
         ->db
@@ -568,7 +568,7 @@ class Home extends CI_Controller {
 
     public function tebok_celengan()
 	{
-		$id 	  	= $this->input->post('id');
+		$id 	  	= $this->uri->segment(3);
 		$username 	= $this->session->userdata('username');
 		$box1 		= $this->celeng->select_celengan($id);
 		$box 		= $this->celeng->check_user($username);
