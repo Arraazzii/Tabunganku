@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2019 at 06:06 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 5.6.37
+-- Generation Time: Mar 04, 2019 at 02:50 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 5.6.39
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -94,6 +94,19 @@ DELIMITER $$
 CREATE TRIGGER `delete_nabung` AFTER DELETE ON `table_nabung` FOR EACH ROW BEGIN
 	UPDATE table_celengan SET jumlah_uang = jumlah_uang-OLD.jumlah_nabung WHERE username = OLD.username AND nama_celengan = OLD.celengan;
     UPDATE table_simpanan SET jumlah_tabungan = jumlah_tabungan-OLD.jumlah_nabung WHERE username = OLD.username;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `edit_nabung` AFTER UPDATE ON `table_nabung` FOR EACH ROW BEGIN
+	UPDATE table_celengan SET jumlah_uang = jumlah_uang-OLD.jumlah_nabung WHERE username = OLD.username AND nama_celengan = OLD.celengan;
+    
+    UPDATE table_celengan SET jumlah_uang = jumlah_uang+NEW.jumlah_nabung WHERE username = NEW.username AND nama_celengan = NEW.celengan;
+    
+    
+    UPDATE table_simpanan SET jumlah_tabungan = jumlah_tabungan-OLD.jumlah_nabung WHERE username = OLD.username;
+    
+    UPDATE table_simpanan SET jumlah_tabungan = jumlah_tabungan+NEW.jumlah_nabung WHERE username = NEW.username;
 END
 $$
 DELIMITER ;
