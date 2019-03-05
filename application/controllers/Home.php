@@ -568,6 +568,7 @@ class Home extends CI_Controller {
     public function tebok_celengan()
 	{
 		$id 	  	= $this->uri->segment(3);
+		$desc 	  	= $this->uri->segment(4);
 		$username 	= $this->session->userdata('username');
 		$box1 		= $this->celeng->select_celengan($id);
 		$box 		= $this->celeng->check_user($username);
@@ -575,7 +576,6 @@ class Home extends CI_Controller {
 		$duitceleng = $box1->jumlah_uang;
 		$hasil 		= $saatini - $duitceleng;
 		$date 		= date("Y-m-d H:i:s");
-		$desc 	  	= $this->input->post('catatan');
 
 
 		$data = array(

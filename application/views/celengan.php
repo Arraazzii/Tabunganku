@@ -32,7 +32,7 @@
           <div class="card-footer">
             <?php if ($q->status == '0') { ?>
               <a href="<?php echo base_url();?>Home/hapus_celengan/<?= $q->id; ?>" id="hapus<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-trash-simple" title="Delete MoneyBox"></i></a>
-              <a href="<?php echo base_url();?>Home/tebok_celengan/<?= $q->id; ?>" id="tebok<?= $q->id; ?>" class="btn-link pull-right "><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
+              <a href="" id="tebok<?= $q->id; ?>" class="btn-link pull-right "><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
               <a href=""  data-toggle="modal" data-target="#modalEditCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil" title="Edit MoneyBox"></i></a>
             <?php } else { ?>
               <p class="card-text text-white pull-right">Already Broke</p>
@@ -214,7 +214,7 @@ foreach ($celeng as $row) {
                     window.location.href = getLink;
                   } else {
                     swal({
-                      title: "MoneyBox is save!",
+                      title: "MoneyBox Is Save!",
                       icon: "info",
                       timer: 10000
                     });
@@ -226,18 +226,20 @@ foreach ($celeng as $row) {
             $('#tebok<?= $row->id; ?>').on('click',function(){
                 var getLink = $(this).attr('href');
                 swal({
-                  title: "Are you sure?",
-                  text: "Once emtied, you will not be able to recover this money box!",
+                  title: "Are You Sure To Emtied This Money Box?", 
+                  text: "Enter Note",
+                  content: "input",
+                  inputPlaceholder: "Enter Note",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,
                 })
                 .then((willDelete) => {
                   if (willDelete) {
-                    window.location.href = getLink;
+                    window.location.href = "<?php echo base_url();?>Home/tebok_celengan/<?= $row->id; ?>/" + `${willDelete}`;
                   } else {
                     swal({
-                      title: "Money Box is save!",
+                      title: "Money Box Is Save!",
                       icon: "info",
                       timer: 10000
                     });
