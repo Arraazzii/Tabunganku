@@ -59,12 +59,12 @@ foreach($kt as $h){
               </div>
               <div class="card-body">
                 <div class="chart-area">
-                	<h5 class="card-category">&nbsp;&nbsp;&nbsp;Debit This Month ( Rp. <?= number_format($debit, 0, ".", "."); ?>,00 )</h5>
+                	<h5 class="card-category">&nbsp;&nbsp;&nbsp;Income This Month ( Rp. <?= number_format($debit, 0, ".", "."); ?>,00 )</h5>
                   	<canvas id="chartLinePurple"></canvas>
                 </div>
                 <hr  style="margin-top: 45px">
                 <div class="chart-area">
-                	<h5 class="card-category">&nbsp;&nbsp;&nbsp;Kredit This Month ( Rp. <?= number_format($kredit, 0, ".", "."); ?>,00 )</h5>
+                	<h5 class="card-category">&nbsp;&nbsp;&nbsp;Outcome This Month ( Rp. <?= number_format($kredit, 0, ".", "."); ?>,00 )</h5>
                   	<canvas id="chartLineRed"></canvas>
                 </div>
               </div>
@@ -312,7 +312,7 @@ demo = {
     var data = {
       labels: <?php echo json_encode($merk);?>,
       datasets: [{
-        label: "Money Saved",
+        label: "Income",
         fill: true,
         backgroundColor: gradientStroke,
         borderColor: '#1f8ef1',
@@ -347,7 +347,7 @@ demo = {
     var data = {
       labels: <?php echo json_encode($waktu);?>,
       datasets: [{
-        label: "Data",
+        label: "Outcome",
         fill: true,
         backgroundColor: gradientStroke,
         borderColor: '#ff0000',

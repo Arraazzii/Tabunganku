@@ -3,6 +3,7 @@
 <script src="<?php echo base_url('assets/js/core/popper.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/js/core/bootstrap.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/js/plugins/perfect-scrollbar.jquery.min.js')?>"></script>
+<script src="<?php echo base_url('assets/js/black-dashboard.min.js?v=1.0.0')?>"></script>
 <!-- Chartist JS -->
 <script src="<?php echo base_url('assets/js/plugins/chartjs.min.js')?>"></script>
 <!--  Notifications Plugin    -->
