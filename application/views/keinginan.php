@@ -1,5 +1,4 @@
 <div class="content">
-  <?php echo $this->session->flashdata('notif') ?>
   <div class="row">
     <div class="col-sm-12">
       <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalKeinginan">Create New</a>
@@ -15,7 +14,7 @@
               <span>
                 <?= $q->keinginan; ?>
               </span>
-              <a href="" data-toggle="modal" data-target="#modalHapusKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-simple-remove"></i></a>
+              <a href="<?php echo base_url();?>Home/hapus_Keinginan/<?= $q->id; ?>" id="hapus<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-trash-simple" title="Delete Wishes"></i></a>
               <a href="" data-toggle="modal" data-target="#modalEditKeinginan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil"></i></a>
             </h5>
             <p class="card-text text-white"><?= $q->deadline; ?> (<?= number_format($q->jumlah_uang, 0, ".", "."); ?>)</p>
@@ -108,7 +107,7 @@ foreach ($wish as $row) {
 
 <?php } ?>
 
-<?php 
+<!-- <?php 
 foreach ($wish as $row) {
 ?>
 
@@ -131,4 +130,46 @@ foreach ($wish as $row) {
   </div>
 </div>
 
+<?php } ?> -->
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <?php if ($this->session->flashdata('globalmsg')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "<?php echo $this->session->flashdata('globalmsg'); ?>",
+          icon: "success",
+          timer: 10000
+        });
+      });
+    </script>
+  <?php endif; ?>
+
+<?php 
+foreach ($wish as $row) {
+?>
+<script type="text/javascript">
+  $('#hapus<?= $row->id; ?>').on('click',function(){
+    var getLink = $(this).attr('href');
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this money box!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location.href = getLink;
+        } else {
+          swal({
+            title: "Wishes is save!",
+            icon: "info",
+            timer: 10000
+          });
+        }
+      });
+    return false;
+  });
+</script>
 <?php } ?>

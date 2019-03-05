@@ -27,7 +27,6 @@
   <div class="limiter">
     <div class="container-login100" style="background-image: url('<?php echo base_url('assets/login/images/img-01.jpg')?>');">
       <div class="wrap-login100 p-t-100">
-          <?=$this->session->flashdata('notif')?>
         <form class="login100-form validate-form" action="<?php echo base_url();?>Login/auth_login" method="POST">
           <div class="login100-form-avatar">
             <img src="<?php echo base_url('assets/img/3.png')?>" alt="AVATAR">
@@ -85,6 +84,21 @@
   <script src="<?php echo base_url('assets/login/vendor/select2/select2.min.js')?>"></script>
 <!--===============================================================================================-->
   <script src="<?php echo base_url('assets/login/js/main.js')?>"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <?php if ($this->session->flashdata('globalmsg')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "Login Failed !",
+          text: "<?php echo $this->session->flashdata('globalmsg'); ?>",
+          icon: "error",
+          timer: 10000
+        });
+      });
+    </script>
+  <?php endif; ?>
 
 </body>
 </html>

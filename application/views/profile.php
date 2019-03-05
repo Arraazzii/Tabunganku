@@ -62,7 +62,6 @@
 </div>
 <?php } else if ($this->session->userdata('type') == 'local') { ?>
 <div class="content">
-<?php echo $this->session->flashdata('notif') ?>
         <div class="">
                 <div class="row">
                         <div class="col-md-12">
@@ -122,3 +121,15 @@
         </div>
 </div>
 <?php } ?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <?php if ($this->session->flashdata('globalmsg')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "<?php echo $this->session->flashdata('globalmsg'); ?>",
+          icon: "success",
+          timer: 10000
+        });
+      });
+    </script>
+  <?php endif; ?>

@@ -24,12 +24,16 @@ class Login extends CI_Controller {
                     $this->session->set_userdata($newdata);
                     redirect('Home/dashboard');            
                     } else {
-                    $this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert" style="text-align: center"> Enter Email & Password Correctly <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+                    $this->session->set_flashdata("globalmsg", "Enter Username & Password Correctly.");
+
                     redirect('Home');
                 }
             } else {
-                $this->session->set_flashdata('notif','<div class="alert alert-danger" role="alert" style="text-align: center"> The Email Or Password You Entered Is Not Registered <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                    redirect('Home');
+
+                $this->session->set_flashdata("globalmsg", "The Username Or Password You Entered Is Not Registered.");
+
+                redirect('Home');
             }
     }
 

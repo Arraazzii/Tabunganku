@@ -73,6 +73,19 @@ foreach($kt as $h){
 	</div>
 </div>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <?php if ($this->session->flashdata('globalmsg')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "<?php echo $this->session->flashdata('globalmsg'); ?>",
+          icon: "success",
+          timer: 10000
+        });
+      });
+    </script>
+  <?php endif; ?>
+  
 <script>
       $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js

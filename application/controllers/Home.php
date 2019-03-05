@@ -195,7 +195,14 @@ class Home extends CI_Controller {
                 data-catatan="'.$nabung->catatan.'"a
                 data-toggle="modal" data-target="#hapus-data"
                 title="Hapus Data">
-                	<button class="btn btn-sm btn-danger"><i class="tim-icons icon-trash-simple"></i></button
+                	<button class="btn btn-sm btn-danger"><i class="tim-icons icon-trash-simple"></i></button>
+                </a>
+                <a
+                onclick="deletedata('.$nabung->id.')"
+                class="btn btn-sm btn-danger"
+                data-toggle="tooltip"
+                title="Hapus Data">
+                	<i class="tim-icons icon-trash-simple" ></i>
                 </a>
             ';
 
@@ -261,14 +268,16 @@ class Home extends CI_Controller {
 	    );
 	    $this->db->where('id', $celengan);
         $this->db->update('table_celengan', $dataceleng);
-        $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Savings Successfully Added <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+        $this->session->set_flashdata('globalmsg', "Savings Successfully Added!");
+
       	redirect('Home/tabungan');
 	}
 
 	// Hapus Keinginan
-    public function hapus_Tabungan(){
+    public function hapus_Tabungan($id){
 
-    	$id     = $this->input->post('id');
+    	$id = $this->uri->segment(3);
         $this
         ->db
         ->where('id', $id);
@@ -276,10 +285,8 @@ class Home extends CI_Controller {
         ->db
         ->delete('table_nabung');
 
-            $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Savings Successfully Deleted.
-            <button type="button" class="close" data-dismiss="alert">&times</button>
-                                                </div>');
+        	$this->session->set_flashdata('globalmsg', "Savings Successfully Deleted!");
+
             redirect('Home/tabungan');
 
     }
@@ -307,9 +314,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_nabung', $data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Success! Savings Successfully Changed.
-			<button type="button" class="close" data-dismiss="alert">&times</button>
-			                                    </div>');
+        $this->session->set_flashdata('globalmsg', "Savings Successfully Changed!");
 
 		//redirect
 		redirect('Home/tabungan');
@@ -360,7 +365,9 @@ class Home extends CI_Controller {
 	  );
 
 	  $this->profil->update($sess, $data, $index);
-	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Password Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+	  $this->session->set_flashdata('globalmsg', "Password Has Been Changed!");
+
       redirect('Home/dashboard');
 	  }
 	}
@@ -380,7 +387,9 @@ class Home extends CI_Controller {
 	  );
 
 	  $this->profil->update($sess, $data, $index);
-	  $this->session->set_flashdata('notif','<div class="alert alert-info" role="alert" style="text-align: center"> Data Has Been Changed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+	  $this->session->set_flashdata('globalmsg', "Data Has Been Changed!");
+
       redirect('Home/profile');
 	}
 
@@ -390,7 +399,7 @@ class Home extends CI_Controller {
 		$sess 			= $this->input->post('username');
 		$keinginan 		= $this->input->post('keinginan');
 	    $batas_waktu 	= $this->input->post('batas_waktu');
-	    $desc			= $this->input->post('desc');
+	    $desc			= $this->input->post('deskripsi');
 	    $jumlah_uang	= $this->input->post('jumlah_uang');
 
 		$data = array(
@@ -405,9 +414,7 @@ class Home extends CI_Controller {
 
 		$this->wish->simpan_Keinginan($data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Wishes Successfully Added.
-			<button type="button" class="close" data-dismiss="alert">&times</button>
-			                                    </div>');
+		$this->session->set_flashdata('globalmsg', "Wishes Successfully Added!");
 
 		//redirect
 		redirect('Home/keinginan');
@@ -420,12 +427,14 @@ class Home extends CI_Controller {
 		$keinginan 		= $this->input->post('keinginan');
 	    $batas_waktu 	= $this->input->post('batas_waktu');
 	    $jumlah_uang	= $this->input->post('jumlah_uang');
+	    $desc			= $this->input->post('deskripsi');
 
 		$data = array(
 
 			'keinginan' 	=> $keinginan,
 			'deadline' 		=> $batas_waktu,
-			'jumlah_uang' 	=> $jumlah_uang
+			'jumlah_uang' 	=> $jumlah_uang,
+			'deskripsi' 	=> $desc
 			
 		);
 
@@ -436,9 +445,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_keinginan', $data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Wishes Successfully Changed.
-			<button type="button" class="close" data-dismiss="alert">&times</button>
-			                                    </div>');
+        $this->session->set_flashdata('globalmsg', "Wishes Successfully Changed!");
 
 		//redirect
 		redirect('Home/keinginan');
@@ -446,7 +453,7 @@ class Home extends CI_Controller {
 
 	// Hapus Keinginan
     public function hapus_Keinginan(){
-        $id = $this->input->post('id');
+        $id = $this->uri->segment(3);
 
         $this
         ->db
@@ -455,10 +462,8 @@ class Home extends CI_Controller {
         ->db
         ->delete('table_keinginan');
 
-            $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Wishes Successfully Deleted.
-            <button type="button" class="close" data-dismiss="alert">&times</button>
-                                                </div>');
+        $this->session->set_flashdata('globalmsg', "Wishes Successfully Deleted!");
+
             redirect('Home/keinginan');
 
     }
@@ -510,9 +515,7 @@ class Home extends CI_Controller {
 
 		$this->celeng->simpan_celengan($data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Money Box Successfully Added.
-			<button type="button" class="close" data-dismiss="alert">&times</button>
-			                                    </div>');
+		$this->session->set_flashdata("globalmsg", "Money Box Successfully Added!");
 
 		//redirect
 		redirect('Home/celengan');
@@ -539,9 +542,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_celengan', $data);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Money Box Successfully Changed.
-			<button type="button" class="close" data-dismiss="alert">&times</button>
-			                                    </div>');
+		$this->session->set_flashdata("globalmsg", "Money Box Successfully Changed!");
 
 		//redirect
 		redirect('Home/celengan');
@@ -558,10 +559,8 @@ class Home extends CI_Controller {
         ->db
         ->delete('table_celengan');
 
-            $this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible">
-            Money Box Successfully Deleted.
-            <button type="button" class="close" data-dismiss="alert">&times</button>
-                                                </div>');
+            $this->session->set_flashdata('globalmsg', "Money Box Successfully Deleted!");
+            
             redirect('Home/celengan');
 
     }    
@@ -611,9 +610,7 @@ class Home extends CI_Controller {
         ->db
         ->update('table_simpanan', $data2);
 
-		$this->session->set_flashdata('notif', '<div class="alert alert-success alert-dismissible"> Your Money Box Was Successfully Emptied
-			<button type="button" class="close" data-dismiss="alert">&times</button>
-			                                    </div>');
+        $this->session->set_flashdata('globalmsg', "Your Money Box Was Successfully Emptied!");
 
 		//redirect
 		redirect('Home/celengan');

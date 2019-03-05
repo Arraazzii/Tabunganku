@@ -1,5 +1,15 @@
 <div class="content">
-  <?php echo $this->session->flashdata('notif') ?>
+  <?php if ($this->session->flashdata('globalmsg')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "<?php echo $this->session->flashdata('globalmsg'); ?>",
+          icon: "success",
+          timer: 10000
+        });
+      });
+    </script>
+  <?php endif; ?>
   <div class="row">
     <div class="col-sm-12">
       <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalCelengan">Create New</a>
@@ -21,8 +31,8 @@
           </div>
           <div class="card-footer">
             <?php if ($q->status == '0') { ?>
-              <a href="<?php echo base_url();?>Home/hapus_celengan/<?= $q->id; ?>" id="hapus" class="btn-link pull-right"><i class="tim-icons icon-trash-simple" title="Delete MoneyBox"></i></a>
-              <a href="<?php echo base_url();?>Home/tebok_celengan/<?= $q->id; ?>" id="tebok" class="btn-link pull-right "><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
+              <a href="<?php echo base_url();?>Home/hapus_celengan/<?= $q->id; ?>" id="hapus<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-trash-simple" title="Delete MoneyBox"></i></a>
+              <a href="<?php echo base_url();?>Home/tebok_celengan/<?= $q->id; ?>" id="tebok<?= $q->id; ?>" class="btn-link pull-right "><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
               <a href=""  data-toggle="modal" data-target="#modalEditCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil" title="Edit MoneyBox"></i></a>
             <?php } else { ?>
               <p class="card-text text-white pull-right">Already Broke</p>
@@ -42,7 +52,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label style="color: black;">MoneyBox Name</label><br>
-            <input type="text" name="namacelengan" class="form-control" placeholder="Celengan" autocomplete="off">
+            <input type="text" name="namacelengan" class="form-control" placeholder="Celengan" autocomplete="off" required="">
             <?php if ($this->session->userdata('type') == 'google') { ?>
               <input type="hidden" name="username" value="<?= $profile['email'];?>" class="form-control" autocomplete="off">
             <?php } else if ($this->session->userdata('type') == 'local') { ?>
@@ -186,12 +196,15 @@ foreach ($celeng as $row) {
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<?php 
+foreach ($celeng as $row) {
+?>
 <script type="text/javascript">
-            $('#hapus').on('click',function(){
+            $('#hapus<?= $row->id; ?>').on('click',function(){
                 var getLink = $(this).attr('href');
                 swal({
                   title: "Are you sure?",
-                  text: "Once deleted, you will not be able to recover this imaginary file!",
+                  text: "Once deleted, you will not be able to recover this money box!",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,
@@ -199,11 +212,6 @@ foreach ($celeng as $row) {
                 .then((willDelete) => {
                   if (willDelete) {
                     window.location.href = getLink;
-                    swal({
-                      title: "MoneyBox has been deleted!",
-                      icon: "success",
-                      timer: 10000
-                    });
                   } else {
                     swal({
                       title: "MoneyBox is save!",
@@ -215,11 +223,11 @@ foreach ($celeng as $row) {
                 return false;
             });
 
-            $('#tebok').on('click',function(){
+            $('#tebok<?= $row->id; ?>').on('click',function(){
                 var getLink = $(this).attr('href');
                 swal({
                   title: "Are you sure?",
-                  text: "Once deleted, you will not be able to recover this imaginary file!",
+                  text: "Once emtied, you will not be able to recover this money box!",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,
@@ -227,14 +235,9 @@ foreach ($celeng as $row) {
                 .then((willDelete) => {
                   if (willDelete) {
                     window.location.href = getLink;
-                    swal({
-                      title: "MoneyBox has been deleted!",
-                      icon: "success",
-                      timer: 10000
-                    });
                   } else {
                     swal({
-                      title: "MoneyBox is save!",
+                      title: "Money Box is save!",
                       icon: "info",
                       timer: 10000
                     });
@@ -243,3 +246,4 @@ foreach ($celeng as $row) {
                 return false;
             });
 </script>
+<?php } ?>

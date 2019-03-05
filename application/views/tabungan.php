@@ -9,7 +9,6 @@
   </script>
 <?php } ?>
 <div class="content">
-  <?php echo $this->session->flashdata('notif') ?>
   <div class="row">
     <div class="col-sm-12">
       <a style="width: 100%" class="btn btn-info animation-on-hover" href="" data-toggle="modal" data-target="#modalTabung">Create New</a>
@@ -181,6 +180,18 @@
       </div>
   </div>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <?php if ($this->session->flashdata('globalmsg')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "<?php echo $this->session->flashdata('globalmsg'); ?>",
+          icon: "success",
+          timer: 10000
+        });
+      });
+    </script>
+  <?php endif; ?>
 
 <script type="text/javascript">
 
@@ -258,5 +269,28 @@ $(document).ready(function() {
             modal.find('#tanggal').attr("value", div.data('tanggal'));
             modal.find('#catatan').attr("value", div.data('catatan'));
         });
+        function deletedata($id) {
+          swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this money box!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              $.ajax({
+                url: "<?php echo base_url();?>"
+              })
+            } else {
+              swal({
+                title: "MoneyBox is save!",
+                icon: "info",
+                timer: 10000
+              });
+            }
+          });
+          return false;
+        }  `                       
     });
     </script>
