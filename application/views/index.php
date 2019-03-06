@@ -87,7 +87,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="login100-form-btn" type="submit">
+          <button class="login100-form-btn" id="button-signup" type="submit">
             Sign Up
           </button>
         </div>
@@ -109,6 +109,13 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
+  function disableBtn() {
+    document.getElementById("button-signup").disabled = true;
+  }
+
+  function enableBtn() {
+      document.getElementById("button-signup").disabled = false;
+  }
   function cek_username(){
     $("#pesan_username").hide();
  
@@ -124,11 +131,13 @@
             $("#username").css({ 'border-color': '#a94442'});
             $("#username-available").hide();
             $("#username-used").show();
+            disableBtn();
             error = 1;
           }else{
             $("#username").css({ 'border-color': '#3c763d'});
             $("#username-used").hide();
             $("#username-available").show();
+            enableBtn();
             error = 0;
           }
         }
