@@ -263,7 +263,7 @@ $(document).ready(function() {
             var id =  $(this).data('id');
             swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this money box!",
+                text: "Once deleted, you will not be able to recover this savings!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -272,7 +272,7 @@ $(document).ready(function() {
                   window.location.href = "<?php echo base_url();?>Home/hapus_Tabungan/" + id;
                 } else {
                   swal({
-                    title: "Wishes is save!",
+                    title: "Saved savings!",
                     icon: "info",
                     timer: 10000
                   });
