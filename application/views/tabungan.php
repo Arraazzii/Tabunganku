@@ -94,7 +94,7 @@
 </div>
 
 <!-- Modal Hapus -->
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="hapus-data" class="modal fade">
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="hapus-data" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -259,15 +259,26 @@ $(document).ready(function() {
             modal.find('#catatan').attr("value", div.data('catatan'));
         });
 
-        $('#hapus-data').on('show.bs.modal', function(event) {
-            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-            var modal = $(this)
-
-            // Isi nilai pada field
-            modal.find('#id').attr("value", div.data('id'));
-            modal.find('#jumlah').attr("value", div.data('jumlah'));
-            modal.find('#tanggal').attr("value", div.data('tanggal'));
-            modal.find('#catatan').attr("value", div.data('catatan'));
-        });     
+        $('#table-1').on('click','.hapus-menabung', function () {
+            var id =  $(this).data('id');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this money box!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              }).then((result) => {
+                if (result) {
+                  window.location.href = "<?php echo base_url();?>Home/hapus_Tabungan/" + id;
+                } else {
+                  swal({
+                    title: "Wishes is save!",
+                    icon: "info",
+                    timer: 10000
+                  });
+                }
+              })
+            });
+    
     });
     </script>

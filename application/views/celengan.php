@@ -32,7 +32,7 @@
           <div class="card-footer">
             <?php if ($q->status == '0') { ?>
               <a href="<?php echo base_url();?>Home/hapus_celengan/<?= $q->id; ?>" id="hapus<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-trash-simple" title="Delete MoneyBox"></i></a>
-              <a href="" id="tebok<?= $q->id; ?>" class="btn-link pull-right "><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
+              <a href=" , km lpolkmjn mkolplokkkjkm k m                        c                         ." id="tebok<?= $q->id; ?>" class="btn-link pull-right "><i class="tim-icons icon-refresh-01" title="Tebok MoneyBox"></i></a>
               <a href=""  data-toggle="modal" data-target="#modalEditCelengan<?= $q->id; ?>" class="btn-link pull-right"><i class="tim-icons icon-pencil" title="Edit MoneyBox"></i></a>
             <?php } else { ?>
               <p class="card-text text-white pull-right">Already Broke</p>

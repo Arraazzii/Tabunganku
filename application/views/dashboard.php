@@ -84,7 +84,18 @@ foreach($kt as $h){
         });
       });
     </script>
+  <?php elseif ($this->session->flashdata('msgggl')): ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        swal({
+          title: "<?php echo $this->session->flashdata('msgggl'); ?>",
+          icon: "warning",
+          timer: 10000
+        });
+      });
+    </script>
   <?php endif; ?>
+
   
 <script>
       $(document).ready(function() {

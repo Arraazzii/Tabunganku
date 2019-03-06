@@ -188,22 +188,15 @@ class Home extends CI_Controller {
                 title="Edit Data">
                 	<button class="btn btn-sm btn-info"><i class="tim-icons icon-pencil"></i></button>
                 </a>
-                <a 
+               	<button
+               	class="btn btn-sm btn-danger hapus-menabung" 
+               	data-toggle="modal"
+                id="id" 
+                data-toggle="modal" 
                 data-id="'.$nabung->id.'"
-                data-jumlah="'.$nabung->jumlah_nabung.'"
-                data-tanggal="'.$nabung->tanggal_menabung.'"
-                data-catatan="'.$nabung->catatan.'"a
-                data-toggle="modal" data-target="#hapus-data"
                 title="Hapus Data">
-                	<button class="btn btn-sm btn-danger"><i class="tim-icons icon-trash-simple"></i></button>
-                </a>
-                <a
-                onclick="deletedata('.$nabung->id.')"
-                class="btn btn-sm btn-danger"
-                data-toggle="tooltip"
-                title="Hapus Data">
-                	<i class="tim-icons icon-trash-simple" ></i>
-                </a>
+                	<i class="tim-icons icon-trash-simple"></i>
+                </button>
             ';
 
 
@@ -357,7 +350,7 @@ class Home extends CI_Controller {
       $index = '0';
 
 	  if ($pass1 != $pass2) {
-	    alert('password tidak sama!');
+	    $this->session->set_flashdata('msgggl', "Confirm Password Not Be Same!");
 	  } elseif ($pass1 == $pass2) {
 	    $data = array(
 	      'password' => md5($pass1),
