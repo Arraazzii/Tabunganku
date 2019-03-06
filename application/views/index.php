@@ -73,7 +73,28 @@
   </div>
   
   
-
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true" style="position: absolute;top:100px">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="<?php echo base_url();?>Login/login_guest" method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Username</label><br>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off"  onkeyup='cek_username()'>
+            <small id="pesan_username" class=""></small>
+            <small class='text-danger' id="username-used" style='display:none'>* Username already used!</small>
+            <small class='text-success' id="username-available" style='display:none'>* Username available!</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="login100-form-btn" type="submit">
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
   
 <!--===============================================================================================-->  
   <script src="<?php echo base_url('assets/login/vendor/jquery/jquery-3.2.1.min.js')?>"></script>
@@ -86,6 +107,36 @@
   <script src="<?php echo base_url('assets/login/js/main.js')?>"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+  function cek_username(){
+    $("#pesan_username").hide();
+ 
+    var username = $("#username").val();
+ 
+    if(username != ""){
+      $.ajax({
+        url: "<?php echo site_url('Login/usernameList')?>",
+        data: 'username='+username,
+        type: "POST",
+        success: function(msg){
+          if(msg==1){
+            $("#username").css({ 'border-color': '#a94442'});
+            $("#username-available").hide();
+            $("#username-used").show();
+            error = 1;
+          }else{
+            $("#username").css({ 'border-color': '#3c763d'});
+            $("#username-used").hide();
+            $("#username-available").show();
+            error = 0;
+          }
+        }
+      });
+    }        
+         
+  }
+</script>
 
   <?php if ($this->session->flashdata('globalmsg')): ?>
     <script type="text/javascript">
@@ -102,22 +153,3 @@
 
 </body>
 </html>
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true" style="position: absolute;top:100px">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form action="<?php echo base_url();?>Login/login_guest" method="POST">
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Username</label><br>
-            <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="login100-form-btn" type="submit">
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
