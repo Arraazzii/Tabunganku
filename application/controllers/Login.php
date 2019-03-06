@@ -54,15 +54,27 @@ class Login extends CI_Controller {
           'status' => '0'
         );
 
-        $this->db->insert("table_user", $log_gs);
-        $newdata = array(
-            'username'  => $username,
-            'id'        => $id,
-            'login'     => true,
-            'type'      => 'local'
-        );
-        $this->session->set_userdata($newdata);
-        redirect('Home/dashboard'); 
+        $sql = $this->db->query("SELECT username FROM table_user where username ='$username'");
+        $cek_nik = $sql->num_rows();
+
+        if ($cek_nik > 0) {
+
+            $this->session->set_flashdata("globalmsg", "Username Already Registered.");
+
+            redirect(site_url('Home'));
+
+        }else{
+            $this->db->insert("table_user", $log_gs);
+            $newdata = array(
+                'username'  => $username,
+                'id'        => $id,
+                'login'     => true,
+                'type'      => 'local'
+            );
+            $this->session->set_userdata($newdata);
+            redirect('Home/dashboard'); 
+        }
+
     }
 
     public function randpass(){
