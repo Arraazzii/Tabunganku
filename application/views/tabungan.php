@@ -261,6 +261,8 @@ $(document).ready(function() {
 
         $('#table-1').on('click','.hapus-menabung', function () {
             var id =  $(this).data('id');
+            var celengan =  $(this).data('celengan');
+            var jumlah =  $(this).data('jumlah');
             swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover this savings!",
@@ -269,7 +271,7 @@ $(document).ready(function() {
                 dangerMode: true,
               }).then((result) => {
                 if (result) {
-                  window.location.href = "<?php echo base_url();?>Home/hapus_Tabungan/" + id;
+                  window.location.href = "<?php echo base_url();?>Home/hapus_Tabungan/" + id + "/" + celengan + "/" + jumlah;
                 } else {
                   swal({
                     title: "Saved savings!",

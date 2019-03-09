@@ -194,6 +194,8 @@ class Home extends CI_Controller {
                 id="id" 
                 data-toggle="modal" 
                 data-id="'.$nabung->id.'"
+                data-celengan="'.$nabung->celengan.'"
+                data-jumlah="'.$nabung->jumlah_nabung.'"
                 title="Hapus Data">
                 	<i class="tim-icons icon-trash-simple"></i>
                 </button>
@@ -268,9 +270,43 @@ class Home extends CI_Controller {
 	}
 
 	// Hapus Keinginan
-    public function hapus_Tabungan($id){
+    public function hapus_Tabungan(){
 
+    	$username = $this->session->userdata('username');
     	$id = $this->uri->segment(3);
+    	$celengan = $this->uri->segment(4);
+    	$nabung = $this->uri->segment(5);
+
+    	$sekarang = $this->celeng->select_celengan($celengan);
+    	$duit = $sekarang->jumlah_uang;
+    	$hasil = $duit - $nabung;
+
+    	$data = array(
+    		'jumlah_uang' => $hasil
+    	);
+
+    	$this
+        ->db
+        ->where('id', $celengan);
+        $this
+        ->db
+        ->update('table_celengan', $data);
+
+        $user = $this->celeng->check_user($username);
+        $semua = $user->jumlah_tabungan;
+        $hasilnya = $semua - $nabung;
+
+        $otherdata = array(
+        	'jumlah_tabungan' =>   $hasilnya
+        );
+
+        $this
+        ->db
+        ->where('username', $username);
+        $this
+        ->db
+        ->update('table_simpanan', $otherdata);
+
         $this
         ->db
         ->where('id', $id);
@@ -544,6 +580,30 @@ class Home extends CI_Controller {
 	// Hapus Celengan
     public function hapus_celengan(){
         $id = $this->uri->segment(3);
+        $sess = $this->session->userdata('username');
+        $celeng = $this->celeng->check_user($sess);
+        $celengan = $this->celeng->select_celengan($id);
+        $semua = $celeng->jumlah_tabungan;
+        $duit = $celengan->jumlah_uang;
+        $hasil = $semua - $duit;
+
+        $data = array(
+        	'jumlah_tabungan' => $hasil
+        );
+
+        $this
+        ->db
+        ->where('username', $sess);
+        $this
+        ->db
+        ->update('table_simpanan', $data);
+
+        $this
+        ->db
+        ->where('celengan', $id);
+        $this
+        ->db
+        ->delete('table_nabung');
 
         $this
         ->db
