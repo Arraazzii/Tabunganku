@@ -22,8 +22,73 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/css/util.css')?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/login/css/main.css')?>">
 <!--===============================================================================================-->
+  <style type="text/css">
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #fff;
+      /* change if the mask should have another color then white */
+      z-index: 99;
+      /* makes sure it stays on top */
+    }
+
+    #status {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 50%;
+      /* centers the loading animation horizontally one the screen */
+      top: 50%;
+      /* centers the loading animation vertically one the screen */
+      background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
+      /* path to your loading animation */
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: -100px 0 0 -100px;
+      /* is width and height divided by two */
+    }
+    .load-bar {
+      position: relative;
+      width: 100%;
+      height: 5px;
+      background-color: #fff;
+    }
+    .bar {
+      content: "";
+      display: inline;
+      position: absolute;
+          left: 50%;
+          /* centers the loading animation horizontally one the screen */
+          top: 50%;
+      width: 0;
+      height: 100%;
+      left: 50%;
+      text-align: center;
+    }
+    .bar:nth-child(1) {
+      background-color: #1d8cf8;
+      animation: loading 3.5s linear infinite;
+    }
+    @keyframes loading {
+        from {left: 50%; width: 0;z-index:100;}
+        33.3333% {left: 0; width: 100%;z-index: 10;}
+        to {left: 0; width: 100%;}
+    }
+  </style>
+
 </head>
 <body>
+  <div id="preloader">
+    <div class="load-bar">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div id="status">&nbsp;</div>
+  </div>
   <div class="limiter">
     <div class="container-login100" style="background-image: url('<?php echo base_url('assets/login/images/img-01.jpg')?>');">
       <div class="wrap-login100 p-t-100">
@@ -105,10 +170,18 @@
   <script src="<?php echo base_url('assets/login/vendor/select2/select2.min.js')?>"></script>
 <!--===============================================================================================-->
   <script src="<?php echo base_url('assets/login/js/main.js')?>"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url('assets/bootstrap/dist/js/bootstrap.min.js')?>"></script>
+  <script src="<?php echo base_url('assets/popper.js/dist/umd/popper.min.js')?>"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
+  $(window).on('load', function() { // makes sure the whole site is loaded 
+    $('#preloader').delay(400).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+    $('body').delay(350).css({'overflow':'visible'});
+  })
+
   function disableBtn() {
     document.getElementById("button-signup").disabled = true;
   }

@@ -49,7 +49,6 @@ foreach($kt as $h){
 </div>
 
 <div class="content">
-	<?php echo $this->session->flashdata('notif') ?>
 	<div class="row">
 		<div class="col-lg-12">
             <div class="card card-chart" style="padding-bottom: 45px">
