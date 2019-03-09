@@ -93,41 +93,6 @@
   </div>
 </div>
 
-<!-- Modal Hapus -->
-<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="hapus-data" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                  <div class="panel-title">
-                    <h4>Delete Saving History ?</h4>
-                  </div>
-                  <button aria-hidden="true" data-dismiss="modal" class="close right" type="button">×</button>
-                </div>
-                <form class="form-horizontal" action="<?php echo base_url();?>Home/hapus_Tabungan" method="post" enctype="multipart/form-data" role="form"> 
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="id">
-                        <div class="form-group">
-                          <label style="color: black;">Date Saving</label><br>
-                          <input type="text" name="jumlah" class="form-control" autocomplete="off" id="tanggal" readonly="">
-                        </div>
-                        <div class="form-group">
-                          <label style="color: black;">Amount Of Money</label><br>
-                          <input type="text" name="tanggal" class="form-control" plautocomplete="off" id="jumlah" readonly="">
-                        </div>
-                        <div class="form-group">
-                          <label style="color: black;">Saving Note</label><br>
-                          <input type="text" name="catatan" class="form-control" autocomplete="off" id="catatan" readonly="">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-info" type="submit"> Go on&nbsp;</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal"> Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
 <!-- Modal Edit -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
         <div class="modal-dialog">
@@ -141,6 +106,8 @@
                 <form class="form-horizontal" action="<?php echo base_url();?>Home/edit_Tabungan" method="post" enctype="multipart/form-data" role="form"> 
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
+                        <input type="hidden" name="celengan" id="celengan">
+                        <input type="hidden" name="jmlh" id="jumlah1" >
                         <div class="form-group">
                           <label style="color: black;">Date Saving</label><br>
                           <input type="text" name="tanggal" class="form-control" autocomplete="off" id="tanggal" readonly="">
@@ -256,7 +223,9 @@ $(document).ready(function() {
             modal.find('#id').attr("value", div.data('id'));
             modal.find('#tanggal').attr("value", div.data('tanggal'));
             modal.find('#jumlah').attr("value", div.data('jumlah'));
+             modal.find('#jumlah1').attr("value", div.data('jumlah'));
             modal.find('#catatan').attr("value", div.data('catatan'));
+             modal.find('#celengan').attr("value", div.data('celengan'));
         });
 
         $('#table-1').on('click','.hapus-menabung', function () {

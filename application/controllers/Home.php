@@ -184,6 +184,7 @@ class Home extends CI_Controller {
                 data-jumlah="'.$nabung->jumlah_nabung.'"
                 data-tanggal="'.$nabung->tanggal_menabung.'"
                 data-catatan="'.$nabung->catatan.'"
+                data-celengan="'.$nabung->celengan.'"
                 data-toggle="modal" data-target="#edit-data"
                 title="Edit Data">
                 	<button class="btn btn-sm btn-info"><i class="tim-icons icon-pencil"></i></button>
@@ -324,9 +325,60 @@ class Home extends CI_Controller {
 	public function edit_Tabungan()
 	{
 		$id 			= $this->input->post('id');
+		$celengan  		= $this->input->post('celengan');
 		$jumlah 		= $this->input->post('jumlah');
+		$jmlh 			= $this->input->post('jmlh');
 	    $tanggal 	 	= $this->input->post('tanggal');
 	    $catatan 		= $this->input->post('catatan');
+    	$username 		= $this->session->userdata('username');
+
+    	//Table Celengan
+	    $sekarang = $this->celeng->select_celengan($celengan);
+    	$duit = $sekarang->jumlah_uang;
+
+    	if ($jumlah > $jmlh) {
+    		$hasil = $jumlah - $jmlh;
+    		$total = $duit + $hasil;
+    	} 
+    	else if ($jumlah < $jmlh) {
+    		$hasil = $jmlh - $jumlah;
+    		$total = $duit - $hasil;
+    	}
+
+    	$data1 = array(
+			'jumlah_uang' 	=> $total			
+		);
+
+		$this
+        ->db
+        ->where('id', $celengan);
+        $this
+        ->db
+        ->update('table_celengan', $data1);
+
+        //Table Simpanan
+        $user = $this->celeng->check_user($username);
+        $semua = $user->jumlah_tabungan;
+
+        if ($jumlah > $jmlh) {
+    		$hasil2 = $jumlah - $jmlh;
+    		$total2 = $semua + $hasil2;
+    	} 
+    	else if ($jumlah < $jmlh) {
+    		$hasil2 = $jmlh - $jumlah;
+    		$total2 = $semua - $hasil2;
+    	}
+
+    	$data2 = array(
+			'jumlah_tabungan' 	=> $total2			
+		);
+
+		$this
+        ->db
+        ->where('username', $username);
+        $this
+        ->db
+        ->update('table_simpanan', $data2);
 
 		$data = array(
 
