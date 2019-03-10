@@ -159,7 +159,7 @@ class Model_Celeng extends CI_Model {
 
     public function count_filtered()
     {
-        $this->db->from($this->table);
+        $this->db->from('table_nabung');
         $query = $this->db->get();
         return $query->num_rows();
     }

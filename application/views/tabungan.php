@@ -194,11 +194,11 @@ $(document).ready(function() {
             "orderable": false, //set not orderable
         },
         ],
-
-
-"language": {                
-            "infoFiltered": ""
-        }
+            "language": {         
+              "info": "",
+              "infoEmpty": "",       
+              "infoFiltered": ""
+            }
     });
 
     $('#btn-filter').click(function(){ //button filter event click
@@ -223,9 +223,9 @@ $(document).ready(function() {
             modal.find('#id').attr("value", div.data('id'));
             modal.find('#tanggal').attr("value", div.data('tanggal'));
             modal.find('#jumlah').attr("value", div.data('jumlah'));
-             modal.find('#jumlah1').attr("value", div.data('jumlah'));
+            modal.find('#jumlah1').attr("value", div.data('jumlah'));
             modal.find('#catatan').attr("value", div.data('catatan'));
-             modal.find('#celengan').attr("value", div.data('celengan'));
+            modal.find('#celengan').attr("value", div.data('celengan'));
         });
 
         $('#table-1').on('click','.hapus-menabung', function () {

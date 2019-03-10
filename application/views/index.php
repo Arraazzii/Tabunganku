@@ -126,11 +126,11 @@
           <div class="text-center w-full p-t-25 p-b-120">
             <a class="txt1" href="<?php echo base_url();?>Login/login_guest" data-toggle="modal" data-target="#searchModal">
               <i class="fa fa-user-secret"></i>&nbspLogin as Guest          
-            </a>
+            </a><!-- 
             &nbsp&nbspOr&nbsp&nbsp
             <a href="<?= $login_url; ?>" class="txt1">
               <i class="fa fa-google"></i>&nbspLogin With Google
-            </a>
+            </a> -->
           </div>
         </form>
       </div>
@@ -145,7 +145,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label>Username</label><br>
-            <input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off"  onkeyup='cek_username()'>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off"  onkeyup='cek_username()' required>
             <small id="pesan_username" class=""></small>
             <small class='text-danger' id="username-used" style='display:none'>* Username already used!</small>
             <small class='text-success' id="username-available" style='display:none'>* Username available!</small>

@@ -177,31 +177,35 @@ class Home extends CI_Controller {
 				$status = 'Kredit';
 			}
 			$row[] = $status;
+			if ($nabung->status == 1) {
+			$row[] = '';
+			} else {
 			$row[] = '
-                  <a
-                href="javascript:void(0)"
-                data-id="'.$nabung->id.'"
-                data-jumlah="'.$nabung->jumlah_nabung.'"
-                data-tanggal="'.$nabung->tanggal_menabung.'"
-                data-catatan="'.$nabung->catatan.'"
-                data-celengan="'.$nabung->celengan.'"
-                data-toggle="modal" data-target="#edit-data"
-                title="Edit Data">
-                	<button class="btn btn-sm btn-info"><i class="tim-icons icon-pencil"></i></button>
-                </a>
-               	<button
-               	class="btn btn-sm btn-danger hapus-menabung" 
-               	data-toggle="modal"
-                id="id" 
-                data-toggle="modal" 
-                data-id="'.$nabung->id.'"
-                data-celengan="'.$nabung->celengan.'"
-                data-jumlah="'.$nabung->jumlah_nabung.'"
-                title="Hapus Data">
-                	<i class="tim-icons icon-trash-simple"></i>
-                </button>
-            ';
-
+              <a
+            href="javascript:void(0)"
+            data-id="'.$nabung->id.'"
+            data-jumlah="'.$nabung->jumlah_nabung.'"
+            data-tanggal="'.$nabung->tanggal_menabung.'"
+            data-catatan="'.$nabung->catatan.'"
+            data-celengan="'.$nabung->celengan.'"
+            data-toggle="modal" data-target="#edit-data"
+            title="Edit Data">
+            	<button class="btn btn-sm btn-info"><i class="tim-icons icon-pencil"></i></button>
+            </a>
+            <button
+            class="btn btn-sm btn-danger hapus-menabung" 
+            data-toggle="modal"
+            id="id" 
+            data-toggle="modal" 
+            data-id="'.$nabung->id.'"
+            data-celengan="'.$nabung->celengan.'"
+            data-jumlah="'.$nabung->jumlah_nabung.'"
+            title="Hapus Data">
+            	<i class="tim-icons icon-trash-simple"></i>
+            </button>
+            '
+			;
+}
 
 			$data[] = $row;
 			$no++;
